@@ -24,7 +24,7 @@ body{
 
 /* Background orbs + grid */
 .bg{position:fixed; inset:0; pointer-events:none}
-.orb{position:absolute; width:44vmax; height:44vmax; filter:blur(40px); opacity:.25; mix-blend:screen; border-radius:50%}
+.orb{position:absolute; width:44vmax; height:44vmax; filter:blur(40px); opacity:.25; mix-blend-mode:screen; border-radius:50%}
 .orb-1{left:-10vmax; top:-10vmax; background:radial-gradient(circle,#7c3aed,transparent 60%); animation:float 14s ease-in-out infinite}
 .orb-2{right:-12vmax; top:-8vmax; background:radial-gradient(circle,#06b6d4,transparent 60%); animation:float 17s ease-in-out infinite reverse}
 .orb-3{left:10vmax; bottom:-14vmax; background:radial-gradient(circle,#22c55e,transparent 60%); animation:float 19s ease-in-out infinite}
