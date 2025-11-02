@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Radikal • Profile Card</title>
+  <meta name="description" content="Ultra-styled, animated, glass-neon profile card for Radikal.eth" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="profile-card.css" />
+</head>
+<body>
+  <div class="bg">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="grid"></div>
+  </div>
+
+  <main class="wrap">
+    <article class="card" aria-label="Radikal profile card" tabindex="0">
+      <div class="card__glow" aria-hidden="true"></div>
+      <div class="card__noise" aria-hidden="true"></div>
+
+      <header class="card__header">
+        <div class="avatar__wrap">
+          <div class="avatar__ring"></div>
+          <img class="avatar" src="https://avatars.githubusercontent.com/u/00000000?v=4" alt="آواتار رادیکال" />
+          <span class="status" title="Available"></span>
+        </div>
+        <div class="id">
+          <h1 class="name">Mohammad Shirvani <span class="aka">(Radikal)</span></h1>
+          <p class="role">Web3 Researcher • Security • Node Ops</p>
+          <p class="ens"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l7.5 4.3v11.4L12 22l-7.5-4.3V6.3L12 2zM6.7 7.2l-.1 9.5L12 19l5.4-2.3.1-9.5L12 5 6.7 7.2z"/></svg> Radikal.eth</p>
+        </div>
+      </header>
+
+      <section class="badges" aria-label="tags">
+        <span class="chip">DeFi</span>
+        <span class="chip">DAO</span>
+        <span class="chip">On-chain Forensics</span>
+        <span class="chip">TON</span>
+        <span class="chip">React/Next.js</span>
+        <span class="chip">Docker • Grafana</span>
+      </section>
+
+      <section class="stats" aria-label="highlights">
+        <div class="stat">
+          <span class="stat__num">17</span>
+          <span class="stat__label">Active Nodes</span>
+        </div>
+        <div class="stat">
+          <span class="stat__num">6.5K+</span>
+          <span class="stat__label">CryptoPIA Members</span>
+        </div>
+        <div class="stat">
+          <span class="stat__num">99.9%</span>
+          <span class="stat__label">Uptime</span>
+        </div>
+      </section>
+
+      <section class="bio">
+        <p>
+          Self‑taught Web3 researcher and defensive builder. Focused on DeFi security, 
+          wallet forensics, and high‑reliability infra. Shipping fast. Measuring everything.
+        </p>
+      </section>
+
+      <section class="cta">
+        <a class="btn btn--primary" href="https://github.com/0xradikal" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn btn--ghost" href="https://x.com/0xradikal" target="_blank" rel="noopener">X (Twitter)</a>
+        <a class="btn btn--ghost" href="https://t.me/Oxradikal" target="_blank" rel="noopener">Telegram</a>
+      </section>
+
+      <footer class="links" aria-label="extra links">
+        <a class="link" href="https://0xradikal.github.io" target="_blank" rel="noopener">Portfolio</a>
+        <a class="link" href="mailto:radikal.eth@pm.me">Email</a>
+        <a class="link" href="#" aria-disabled="true">PGP Key</a>
+      </footer>
+
+      <div class="sparks" aria-hidden="true">
+        <span class="spark s1"></span>
+        <span class="spark s2"></span>
+        <span class="spark s3"></span>
+        <span class="spark s4"></span>
+      </div>
+    </article>
+  </main>
+
+  <!-- Optional: fallback message for users with reduced motion -->
+  <noscript><style>.orb,.sparks,.card__glow{animation:none!important}</style></noscript>
+</body>
+</html>
