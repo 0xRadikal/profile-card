@@ -1,94 +1,404 @@
 <!doctype html>
-<html lang="fa" dir="rtl">
+<html lang="fa" dir="rtl" data-theme="dark">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Radikal • Profile Card</title>
-  <meta name="description" content="Ultra-styled, animated, glass-neon profile card for Radikal.eth" />
+  <meta name="description" content="Web3 researcher & security engineer: DeFi, DAO, TON, nodes, on-chain forensics. Built, tested, verified." />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <link rel="canonical" href="https://0xradikal.github.io/profile-card/" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <meta property="og:url" content="https://0xradikal.github.io/profile-card/">
+  <meta property="og:site_name" content="Radikal">
+  <meta name="twitter:image" content="https://0xradikal.github.io/profile-card/preview.png">
+  <meta name="twitter:creator" content="@0xradikal">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Radikal • Profile Card" />
+  <meta property="og:description" content="Web3 Research • Security • Node Ops • DeFi/DAO • TON • React/Next.js" />
+  <meta property="og:type" content="profile" />
+  <meta property="og:image" content="https://0xradikal.github.io/profile-card/preview.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/profile-card/favicon.png" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Rubik:wght@400;600;800&display=swap" rel="stylesheet" />
+
   <link rel="stylesheet" href="profile-card.css" />
+
+  <!-- Theme init (keep lightweight) -->
+  <script>
+    (function(){
+      const system = matchMedia('(prefers-color-scheme: light)').matches ? 'light':'dark';
+      const pref = localStorage.getItem('theme') || system;
+      document.documentElement.setAttribute('data-theme', pref);
+    })();
+  </script>
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"Mohammad Shirvani",
+    "alternateName":"Radikal",
+    "jobTitle":"Web3 Researcher",
+    "url":"https://0xradikal.github.io",
+    "sameAs":["https://github.com/0xradikal","https://x.com/0xradikal","https://t.me/Oxradikal"]
+  }
+  </script>
 </head>
 <body>
-  <div class="bg">
+  <div class="bg" aria-hidden="true">
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
     <div class="orb orb-3"></div>
-    <div class="grid"></div>
+
+    <!-- HUD -->
+    <div class="hud">
+      <div class="scanline"></div>
+      <div class="hud-corner tl"></div>
+      <div class="hud-corner tr"></div>
+      <div class="hud-corner bl"></div>
+      <div class="hud-corner br"></div>
+      <div class="hud-grid parallax" data-depth="0.2"></div>
+      <div class="hud-grid fine parallax" data-depth="0.35"></div>
+    </div>
   </div>
 
   <main class="wrap">
-    <article class="card" aria-label="Radikal profile card" tabindex="0">
+    <article class="card" role="region" aria-labelledby="name">
       <div class="card__glow" aria-hidden="true"></div>
-      <div class="card__noise" aria-hidden="true"></div>
 
-      <header class="card__header">
+      <header class="card__header stage">
+        <button class="theme" id="themeToggle" type="button" aria-label="Toggle theme" aria-pressed="false" title="Theme">
+          <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4V2m0 20v-2m8-8h2M2 12h2m13.66 6.66 1.41 1.41M4.93 4.93 6.34 6.34m0 11.32-1.41 1.41m12.73-12.73 1.41-1.41" stroke="currentColor" stroke-width="1.6" fill="none"/></svg>
+          <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"/></svg>
+        </button>
+
         <div class="avatar__wrap">
-          <div class="avatar__ring"></div>
-          <img class="avatar" src="https://avatars.githubusercontent.com/u/00000000?v=4" alt="آواتار رادیکال" />
-          <span class="status" title="Available"></span>
+          <div class="avatar__ring" aria-hidden="true"></div>
+          <img class="avatar" src="https://github.com/0xradikal.png" alt="تصویر محمد شیروانی (Radikal)" width="160" height="160" />
+          <span class="status" title="Available" aria-hidden="true"></span>
+          <span class="sr-only">Status: Available</span>
         </div>
         <div class="id">
-          <h1 class="name">Mohammad Shirvani <span class="aka">(Radikal)</span></h1>
-          <p class="role">Web3 Researcher • Security • Node Ops</p>
-          <p class="ens"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l7.5 4.3v11.4L12 22l-7.5-4.3V6.3L12 2zM6.7 7.2l-.1 9.5L12 19l5.4-2.3.1-9.5L12 5 6.7 7.2z"/></svg> Radikal.eth</p>
+          <h1 class="name" id="name">Mohammad Shirvani <span class="aka">(Radikal)</span></h1>
+          <p class="role mono">Web3 Researcher • DeFi • Security Engineer</p>
+          <p class="ens mono"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l7.5 4.3v11.4L12 22l-7.5-4.3V6.3L12 2z"/></svg> Radikal.eth</p>
+          <p class="meta">📍 Shahrekord • Software Engineering @ TVU</p>
+          <p class="bio-short">I engineer systems where security meets measurable design — built, tested, verified.</p>
         </div>
       </header>
 
-      <section class="badges" aria-label="tags">
-        <span class="chip">DeFi</span>
-        <span class="chip">DAO</span>
-        <span class="chip">On-chain Forensics</span>
-        <span class="chip">TON</span>
-        <span class="chip">React/Next.js</span>
-        <span class="chip">Docker • Grafana</span>
+      <section class="badges stage" aria-label="Tags">
+        <span class="chip">DeFi</span><span class="chip">DAO</span><span class="chip">TON</span>
+        <span class="chip">On-Chain Forensics</span><span class="chip">Node Ops</span>
+        <span class="chip">React / Next.js</span><span class="chip">Docker • Grafana</span>
+        <span class="chip">Security Research</span>
       </section>
 
-      <section class="stats" aria-label="highlights">
-        <div class="stat">
-          <span class="stat__num">17</span>
-          <span class="stat__label">Active Nodes</span>
+      <section class="stats stage" aria-label="Highlights">
+        <div class="stat"><span class="stat__num">6.5K+</span><span class="stat__label">CryptoPIA Members</span></div>
+        <div class="stat"><span class="stat__num">17</span><span class="stat__label">Active Nodes</span></div>
+        <div class="stat"><span class="stat__num">99.9%</span><span class="stat__label">Uptime</span></div>
+        <div class="stat"><span class="stat__num">$20K+</span><span class="stat__label">Rewards</span></div>
+      </section>
+
+      <section class="bio stage">
+        <p>Self-taught researcher focused on defensive infra, automation, and wallet forensics. Curiosity is my debugging tool.</p>
+        <p>Operating multi-chain infra powering DeFi & TON research initiatives. Open to collaborations and infra/security roles.</p>
+      </section>
+
+      <section class="cta stage">
+        <a class="btn btn--primary tilt term" href="/profile-card/Radikal-CV.pdf" target="_blank" rel="noopener noreferrer" data-cmd="> resume"></a>
+        <a class="btn btn--ghost tilt term" href="/profile-card/projects.html" target="_blank" rel="noopener noreferrer" data-cmd="> projects"></a>
+        <a class="btn btn--ghost tilt term" href="mailto:radikal.eth@pm.me" rel="noopener noreferrer" data-cmd="> collaborate"></a>
+        <a class="btn btn--ghost tilt" href="https://t.me/Oxradikal" target="_blank" rel="noopener noreferrer">Telegram</a>
+        <a class="btn btn--ghost tilt" href="https://github.com/0xradikal" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a class="btn btn--ghost tilt" href="https://x.com/0xradikal" target="_blank" rel="noopener noreferrer">X</a>
+      </section>
+
+      <!-- =========================
+           Interactive Shell (v7.3)
+      ========================== -->
+      <section class="shell stage" aria-label="Interactive shell">
+        <div class="shell__header">
+          <span class="led led--ok" aria-hidden="true"></span>
+          <span class="led led--net" aria-hidden="true"></span>
+          <span class="led led--sec" aria-hidden="true"></span>
+          <span class="shell__title mono">Radikal CLI v7.3</span>
+          <div class="shell__actions">
+            <button class="shell__btn mono" type="button" id="muteBtn" aria-label="Toggle sound" aria-pressed="false" title="Mute/Unmute">mute: off</button>
+            <button class="shell__btn mono" type="button" id="helpBtn" aria-label="Show help">help</button>
+            <button class="shell__btn mono" type="button" id="clearBtn" aria-label="Clear log">clear</button>
+          </div>
         </div>
-        <div class="stat">
-          <span class="stat__num">6.5K+</span>
-          <span class="stat__label">CryptoPIA Members</span>
+
+        <div class="shell__output mono" id="output" tabindex="0" role="status" aria-live="polite" aria-atomic="false"></div>
+
+        <div class="shell__input input-line">
+          <label for="input" class="prompt mono" aria-hidden="true">radikal.eth$</label>
+          <input id="input" class="mono" type="text" aria-label="Command input" autocomplete="off" />
         </div>
-        <div class="stat">
-          <span class="stat__num">99.9%</span>
-          <span class="stat__label">Uptime</span>
-        </div>
       </section>
 
-      <section class="bio">
-        <p>
-          Self‑taught Web3 researcher and defensive builder. Focused on DeFi security, 
-          wallet forensics, and high‑reliability infra. Shipping fast. Measuring everything.
-        </p>
-      </section>
-
-      <section class="cta">
-        <a class="btn btn--primary" href="https://github.com/0xradikal" target="_blank" rel="noopener">GitHub</a>
-        <a class="btn btn--ghost" href="https://x.com/0xradikal" target="_blank" rel="noopener">X (Twitter)</a>
-        <a class="btn btn--ghost" href="https://t.me/Oxradikal" target="_blank" rel="noopener">Telegram</a>
-      </section>
-
-      <footer class="links" aria-label="extra links">
-        <a class="link" href="https://0xradikal.github.io" target="_blank" rel="noopener">Portfolio</a>
-        <a class="link" href="mailto:radikal.eth@pm.me">Email</a>
-        <a class="link" href="#" aria-disabled="true">PGP Key</a>
+      <footer class="links stage" aria-label="Links">
+        <a class="link" href="https://0xradikal.github.io" target="_blank" rel="noopener noreferrer">Portfolio</a>
+        <a class="link" href="/profile-card/contact.html" target="_blank" rel="noopener noreferrer">Contact</a>
       </footer>
 
       <div class="sparks" aria-hidden="true">
-        <span class="spark s1"></span>
-        <span class="spark s2"></span>
-        <span class="spark s3"></span>
-        <span class="spark s4"></span>
+        <span class="spark s1"></span><span class="spark s2"></span>
+        <span class="spark s3"></span><span class="spark s4"></span>
       </div>
     </article>
   </main>
 
-  <!-- Optional: fallback message for users with reduced motion -->
-  <noscript><style>.orb,.sparks,.card__glow{animation:none!important}</style></noscript>
+<script>
+  /* Radikal Profile Card — CLI v7.3 (clean build) */
+  'use strict';
+
+  // ===== Theme toggle =====
+  const themeBtn = document.getElementById('themeToggle');
+  function getCurrentTheme(){
+    return document.documentElement.getAttribute('data-theme')
+      || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+  }
+  function setTheme(next){
+    document.documentElement.setAttribute('data-theme', next);
+    try{ localStorage.setItem('theme', next); }catch(_){ }
+    themeBtn?.setAttribute('aria-pressed', String(next === 'light'));
+  }
+  // sync aria-pressed on load
+  themeBtn?.setAttribute('aria-pressed', String(getCurrentTheme() === 'light'));
+  themeBtn?.addEventListener('click', ()=>{
+    const cur  = getCurrentTheme();
+    const next = (cur === 'light') ? 'dark' : 'light';
+    setTheme(next);
+  });
+
+  // ===== Elements =====
+  const outEl    = document.getElementById('output');
+  const inEl     = document.getElementById('input');
+  const helpBtn  = document.getElementById('helpBtn');
+  const clearBtn = document.getElementById('clearBtn');
+  const muteBtn  = document.getElementById('muteBtn');
+  if(!outEl || !inEl){ console.warn('CLI elements not found. Abort init.'); }
+
+  // ===== WebAudio click sounds =====
+  let audioCtx = null;
+  let muted = false; // default: sound ON
+  function initAudio(){
+    if(audioCtx) return;
+    const Ctx = window.AudioContext || window.webkitAudioContext;
+    if(!Ctx) return;
+    audioCtx = new Ctx();
+    if (audioCtx.state === 'suspended') { audioCtx.resume?.(); }
+  }
+  function tick(freq=220, dur=0.02, vol=0.03){
+    if(muted || !audioCtx) return;
+    const t0 = audioCtx.currentTime;
+    const osc  = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = 'square';
+    osc.frequency.setValueAtTime(freq, t0);
+    gain.gain.setValueAtTime(vol, t0);
+    osc.connect(gain); gain.connect(audioCtx.destination);
+    osc.start(t0);
+    setTimeout(()=>{
+      try{ osc.stop(); }catch(_){ }
+      try{ osc.disconnect(); }catch(_){ }
+      try{ gain.disconnect(); }catch(_){ }
+    }, dur*1000);
+  }
+  // Unlock audio on first user gesture
+  window.addEventListener('pointerdown', initAudio, { once:true });
+  window.addEventListener('click',       initAudio, { once:true });
+  window.addEventListener('keydown',     initAudio, { once:true });
+
+  // ===== Output helpers =====
+  let autoScroll = true;
+  const atBottom = () => outEl ? (outEl.scrollTop + outEl.clientHeight >= outEl.scrollHeight - 8) : true;
+  outEl?.addEventListener('scroll', () => { autoScroll = atBottom(); });
+  const maybeScrollEnd = () => { if(outEl && autoScroll) outEl.scrollTop = outEl.scrollHeight; };
+
+  const PRUNE_MAX = 70;
+  const prune = () => {
+    if(!outEl) return;
+    while (outEl.children.length > PRUNE_MAX) outEl.removeChild(outEl.firstElementChild);
+  };
+
+  function printHTML(html, cls='ok'){
+    if(!outEl) return;
+    const d=document.createElement('div'); d.className=cls; d.innerHTML=html;
+    outEl.appendChild(d); prune(); maybeScrollEnd();
+  }
+  function printText(text, cls='info'){
+    if(!outEl) return;
+    const d=document.createElement('div'); d.className=cls; d.textContent=text;
+    outEl.appendChild(d); prune(); maybeScrollEnd();
+  }
+
+  // typewriter with slight jitter + abort support
+  let typingAbort = false;
+  async function typeLine(text, cls='info', baseDelay=14){
+    if(!outEl) return;
+    const d=document.createElement('div'); d.className=cls;
+    outEl.appendChild(d); prune();
+    for(let i=0;i<text.length;i++){
+      if(typingAbort){ d.textContent = text; maybeScrollEnd(); return; }
+      d.textContent += text[i];
+      tick(220 + (i%3)*30, 0.005, 0.02);
+      const jitter = (Math.random()*6)|0;
+      await new Promise(r=>setTimeout(r, baseDelay + jitter));
+    }
+    maybeScrollEnd();
+  }
+
+  // --- history (persisted)
+  const HISTORY_KEY = 'cli_history';
+  const history = (()=>{ try { return JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]'); } catch(_) { return []; } })();
+  let histIdx = history.length;
+  const saveHistory = (cmd) => {
+    history.push(cmd);
+    if(history.length > 100) history.shift();
+    try { localStorage.setItem(HISTORY_KEY, JSON.stringify(history)); } catch(_) {}
+    histIdx = history.length;
+  };
+
+  // --- command set + aliases
+  const files = new Map([
+    ['resume',   '/profile-card/Radikal-CV.pdf'],
+    ['projects', '/profile-card/projects.html'],
+  ]);
+  function helpTable(){
+    return [
+      'COMMAND       DESCRIPTION',
+      'help (h)      list available commands',
+      'ls            list available files',
+      'cat <file>    view resume or projects',
+      'r             open resume',
+      'p             open projects',
+      'whoami        profile info',
+      'status        node ops summary',
+      'clear (c)     clear screen'
+    ].join('\n');
+  }
+  function aliasToCommand(cmd){
+    if(cmd==='h' ) return 'help';
+    if(cmd==='r' ) return 'cat resume';
+    if(cmd==='p' ) return 'cat projects';
+    if(cmd==='c' ) return 'clear';
+    return cmd;
+  }
+
+  // ===== Single, correct handle() =====
+  async function handle(raw){
+    const _raw = (raw||'').trim();
+    const cmd = aliasToCommand(_raw);
+    if(!cmd) return;
+    printText(`$ ${cmd}`, 'prompt');
+    const [base, ...rest] = cmd.split(/\s+/);
+    const arg = rest.join(' ');
+
+    switch(base){
+      case 'help':
+        printHTML(`<pre class='tbl'>${helpTable()}</pre>`, 'ok');
+        break;
+
+      case 'ls':
+        printText([...files.keys()].join('  '), 'ok');
+        break;
+
+      case 'cat': {
+        const href = files.get(arg);
+        if(href){
+          const label = (arg === 'resume') ? 'Radikal-CV.pdf' : 'Projects';
+          printHTML(`Opening ${arg}... <a href='${href}' target='_blank' rel='noopener noreferrer'>[${label}]</a>`, 'ok');
+        } else {
+          printText(`cat: ${arg||''}: No such file`, 'err');
+        }
+        break; }
+
+      case 'whoami':
+        printText('Mohammad Shirvani (Radikal) — Web3 Researcher • DeFi • Security Engineer', 'ok');
+        printText('ENS: Radikal.eth | Shahrekord | Software Engineering @ TVU', 'info');
+        break;
+
+      case 'status':
+        printHTML(`System: <span class='ok'>OK</span>\nNodes: <span class='num'>17 active</span>\nUptime: <span class='ok'>99.9%</span>\nRewards: <span class='num'>$20K+</span>`, 'ok');
+        break;
+
+      case 'clear':
+        if(outEl) outEl.innerHTML='';
+        break;
+
+      default:
+        printText(`command not found: ${base}`, 'err');
+        break;
+    }
+  }
+
+  // --- input handlers
+  inEl?.addEventListener('focus', ()=>{
+    if (matchMedia('(pointer:coarse)').matches) inEl.scrollIntoView({block:'nearest'});
+  });
+  outEl?.addEventListener('keydown', e=>{ if(e.key==='Escape') inEl?.focus(); });
+  inEl?.addEventListener('keydown', e=>{
+    if(e.key === 'Enter'){
+      const cmd = inEl.value.trim();
+      if(cmd){ saveHistory(cmd); }
+      inEl.value = '';
+      tick(420, 0.02, 0.04);
+      handle(cmd);
+    } else if(e.key === 'ArrowUp'){
+      if(history.length && histIdx > 0){ histIdx--; inEl.value = history[histIdx]; setTimeout(()=>inEl.setSelectionRange(inEl.value.length, inEl.value.length)); }
+      e.preventDefault();
+    } else if(e.key === 'ArrowDown'){
+      if(history.length && histIdx < history.length-1){ histIdx++; inEl.value = history[histIdx]; }
+      else { histIdx = history.length; inEl.value=''; }
+      e.preventDefault();
+    } else {
+      typingAbort = true; // cancel boot animation on typing
+      tick(300, 0.004, 0.014);
+    }
+  });
+
+  helpBtn?.addEventListener('click', ()=> handle('help'));
+  clearBtn?.addEventListener('click', ()=> handle('clear'));
+  muteBtn?.addEventListener('click', ()=>{
+    muted = !muted;
+    muteBtn.textContent = `mute: ${muted ? 'on' : 'off'}`;
+    muteBtn.setAttribute('aria-pressed', String(muted));
+  });
+
+  // --- boot sequence (mobile-aware; abortable)
+  async function boot(){
+    if(!inEl) return;
+    inEl.disabled = true;
+    const isMobile = matchMedia('(pointer:coarse)').matches;
+    const seq = [
+      '> initializing system modules...',
+      '> loading node metrics...',
+      '> verifying RPC connections...',
+      '> security daemon: OK',
+      '> environment: stable',
+      'Radikal CLI v7.3 ready.',
+      "Type 'help' to begin."
+    ];
+    typingAbort = false;
+    for(const line of seq){
+      await typeLine(line, 'info', isMobile ? 8 : 16);
+      await new Promise(r=>setTimeout(r, 120));
+      if(typingAbort) break;
+    }
+    inEl.disabled = false; inEl.focus();
+  }
+  boot();
+</script>
+
 </body>
 </html>

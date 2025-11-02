@@ -1,0 +1,212 @@
+<!-- =========================================
+  FILE: projects.html (Radikal — Projects)
+  LOCATION: 0xRadikal.github.io/profile-card/projects.html
+  PAIRS WITH: profile-card.css (v6 — Cyber‑Minimal)
+  FEATURES: filter/search, term-style CTAs, HUD overlay, a11y, JSON-LD ItemList
+========================================= -->
+<!doctype html>
+<html lang="fa" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Radikal • Projects</title>
+  <meta name="description" content="Selected projects by Mohammad Shirvani (Radikal): CryptoPIA, Raydikal VPN, BitBest, multi‑chain node ops, security tooling." />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <link rel="canonical" href="https://0xradikal.github.io/profile-card/projects.html" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta property="og:title" content="Radikal • Projects" />
+  <meta property="og:description" content="CryptoPIA, Raydikal VPN, BitBest, Node Ops, security tools." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://0xradikal.github.io/profile-card/preview.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/profile-card/favicon.png" />
+
+  <!-- Fonts -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Rubik:wght@400;600;800&display=swap" as="style" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Rubik:wght@400;600;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="profile-card.css" />
+  <script>
+    (function(){
+      const sys = matchMedia('(prefers-color-scheme: light)').matches ? 'light':'dark';
+      const pref = localStorage.getItem('theme') || sys;
+      document.documentElement.setAttribute('data-theme', pref);
+    })();
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Radikal Projects",
+    "itemListOrder": "http://schema.org/ItemListOrderAscending",
+    "itemListElement": [
+      {"@type":"ListItem","position":1,"url":"https://t.me/crypttopiaa","name":"CryptoPIA"},
+      {"@type":"ListItem","position":2,"url":"#raydikal-vpn","name":"Raydikal VPN"},
+      {"@type":"ListItem","position":3,"url":"#bitbest","name":"BitBest"},
+      {"@type":"ListItem","position":4,"url":"#node-ops","name":"Node Ops"}
+    ]
+  }
+  </script>
+</head>
+<body>
+  <!-- Background + HUD (same vibe as v6) -->
+  <div class="bg" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="hud">
+      <div class="scanline"></div>
+      <div class="hud-corner tl"></div>
+      <div class="hud-corner tr"></div>
+      <div class="hud-corner bl"></div>
+      <div class="hud-corner br"></div>
+      <div class="hud-grid parallax" data-depth="0.2"></div>
+      <div class="hud-grid fine parallax" data-depth="0.35"></div>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <article class="card" role="region" aria-labelledby="title-projects">
+      <div class="card__glow" aria-hidden="true"></div>
+
+      <header class="card__header stage">
+        <button class="theme" id="themeToggle" type="button" aria-label="Toggle theme" aria-pressed="false" title="Theme">
+          <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4V2m0 20v-2m8-8h2M2 12h2m13.66 6.66 1.41 1.41M4.93 4.93 6.34 6.34m0 11.32-1.41 1.41m12.73-12.73 1.41-1.41" stroke="currentColor" stroke-width="1.6" fill="none"/></svg>
+          <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"/></svg>
+        </button>
+        <div class="id">
+          <h1 class="name" id="title-projects">Projects <span class="aka">(Radikal)</span></h1>
+          <p class="meta">Selected work across community, infra, research, and security.</p>
+        </div>
+        <nav class="badges" aria-label="Quick filters">
+          <button class="chip" data-filter="all">All</button>
+          <button class="chip" data-filter="community">Community</button>
+          <button class="chip" data-filter="infra">Infra</button>
+          <button class="chip" data-filter="security">Security</button>
+          <button class="chip" data-filter="tools">Tools</button>
+        </nav>
+      </header>
+
+      <!-- Search -->
+      <section class="stage" aria-label="Search">
+        <div class="search mono" role="search">
+          <input id="q" class="search__input" type="search" placeholder="> search projects" aria-label="جستجوی پروژه" />
+        </div>
+      </section>
+
+      <!-- Project Grid -->
+      <section class="grid-projects stage" aria-label="Project list">
+        <!-- CryptoPIA -->
+        <article class="proj" data-tags="community tools" id="cryptopia">
+          <header class="proj__head">
+            <h2 class="proj__title">CryptoPIA</h2>
+            <span class="proj__meta">6.5K+ members • Education & DeFi research</span>
+          </header>
+          <p class="proj__desc">Persian crypto community and research hub. Content ops, growth, and hands-on DeFi/TON walkthroughs.</p>
+          <div class="proj__actions">
+            <a class="btn btn--ghost term" href="https://t.me/crypttopiaa" target="_blank" rel="noopener" data-cmd="> open">&gt; open</a>
+          </div>
+        </article>
+
+        <!-- Raydikal VPN -->
+        <article class="proj" data-tags="infra security tools" id="raydikal-vpn">
+          <header class="proj__head">
+            <h2 class="proj__title">Raydikal VPN</h2>
+            <span class="proj__meta">Secure multi-device • Panel + Telegram</span>
+          </header>
+          <p class="proj__desc">Secure VPN product with membership tiers, Telegram bot integration, and automation pipelines.</p>
+          <ul class="proj__list mono">
+            <li>Stack: Node.js, Docker, Prometheus, Grafana</li>
+            <li>Focus: privacy by design, automated provisioning</li>
+          </ul>
+          <div class="proj__actions">
+            <a class="btn btn--ghost term" href="#" data-cmd="> docs">&gt; docs</a>
+          </div>
+        </article>
+
+        <!-- BitBest -->
+        <article class="proj" data-tags="community research" id="bitbest">
+          <header class="proj__head">
+            <h2 class="proj__title">BitBest</h2>
+            <span class="proj__meta">Experimental brand • DeFi/NFT analytics</span>
+          </header>
+          <p class="proj__desc">Experiment lab for analytics, content formats, and BD funnels oriented to Web3 products and exchanges.</p>
+          <div class="proj__actions">
+            <a class="btn btn--ghost term" href="#" data-cmd="> repo">&gt; repo</a>
+          </div>
+        </article>
+
+        <!-- Node Ops -->
+        <article class="proj" data-tags="infra security" id="node-ops">
+          <header class="proj__head">
+            <h2 class="proj__title">Node Ops</h2>
+            <span class="proj__meta">17 nodes • 99–99.9% uptime • $20K+ rewards</span>
+          </header>
+          <p class="proj__desc">Multi-chain validators and indexers (TON, EVM, Solana). Monitoring, alerting, and security hardening.</p>
+          <ul class="proj__list mono">
+            <li>Prometheus/Grafana dashboards</li>
+            <li>Failover & alerting (Pager‑style)</li>
+          </ul>
+          <div class="proj__actions">
+            <a class="btn btn--ghost term" href="#" data-cmd="> status">&gt; status</a>
+          </div>
+        </article>
+
+        <!-- Security Tools -->
+        <article class="proj" data-tags="security tools" id="security-tools">
+          <header class="proj__head">
+            <h2 class="proj__title">Security Tooling</h2>
+            <span class="proj__meta">On‑chain forensics • Wallet defense</span>
+          </header>
+          <p class="proj__desc">Scripts and bots for on‑chain investigations, phishing detections, and automated risk checks.</p>
+          <div class="proj__actions">
+            <a class="btn btn--ghost term" href="#" data-cmd="> docs">&gt; docs</a>
+          </div>
+        </article>
+      </section>
+
+      <!-- Back -->
+      <footer class="links stage" aria-label="Back">
+        <a class="link" href="/profile-card/" rel="noopener">&larr; Back to Profile</a>
+      </footer>
+    </article>
+  </main>
+
+  <script>
+    // Theme toggle
+    const toggle = document.getElementById('themeToggle');
+    const getPref = () => localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    const applyTheme = (t) => { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); toggle?.setAttribute('aria-pressed', String(t === 'light')); };
+    applyTheme(getPref());
+    toggle?.addEventListener('click', () => { const cur = document.documentElement.getAttribute('data-theme') || 'dark'; applyTheme(cur === 'dark' ? 'light' : 'dark'); toggle.classList.add('pulse'); setTimeout(()=>toggle.classList.remove('pulse'), 260); });
+
+    // Parallax HUD
+    const layers = document.querySelectorAll('.parallax');
+    let rafId = null; const parallaxTo = (x,y)=>{ layers.forEach(el=>{ const d=parseFloat(el.dataset.depth||'0.2'); el.style.transform = `translate3d(${x*d}px, ${y*d}px, 0)`; }); };
+    window.addEventListener('pointermove', (e)=>{ if(rafId) return; rafId = requestAnimationFrame(()=>{ const cx=innerWidth/2, cy=innerHeight/2; parallaxTo((e.clientX-cx)/40,(e.clientY-cy)/40); rafId=null; }); }, {passive:true});
+
+    // Filters + search (debounced)
+    const items = Array.from(document.querySelectorAll('.proj'));
+    const chips = Array.from(document.querySelectorAll('[data-filter]'));
+    const q = document.getElementById('q');
+    let active = 'all', timer=null;
+
+    function apply(){
+      const term = (q?.value||'').trim().toLowerCase();
+      items.forEach(el=>{
+        const tags = el.dataset.tags||'';
+        const text = el.innerText.toLowerCase();
+        const byTag = (active==='all') || tags.includes(active);
+        const byText = !term || text.includes(term);
+        el.style.display = (byTag && byText) ? '' : 'none';
+      });
+    }
+    chips.forEach(ch=> ch.addEventListener('click', ()=>{ active = ch.dataset.filter; chips.forEach(x=>x.classList.remove('is-active')); ch.classList.add('is-active'); apply(); }));
+    q?.addEventListener('input', ()=>{ clearTimeout(timer); timer = setTimeout(apply, 160); });
+    // default state
+    document.querySelector('[data-filter="all"]').classList.add('is-active');
+    apply();
+  </script>
+</body>
+</html>
