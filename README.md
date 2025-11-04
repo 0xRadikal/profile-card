@@ -1,7 +1,10 @@
 # Radikal Profile Card (v7.3 — Cyber-Minimal)
 
 **Author:** [Mohammad Shirvani (Radikal)](https://github.com/0xradikal)
-**Demo:** [Profile Card View](https://github.com/0xRadikal/profile-card/blob/master/Demo.jpg)
+**Demo:** <p align="center">
+  <img src="./Demo.jpg" alt="Profile Card Preview" width="720">
+</p>
+
 **License:** MIT
 
 ---
@@ -243,7 +246,11 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
 # کارت پروفایل Radikal (نسخه 7.3 — Cyber-Minimal)
 
 **نویسنده:** [محمد شیروانی (Radikal)](https://github.com/0xradikal)
-**دموی زنده:** [0xradikal.github.io/profile-card](https://0xradikal.github.io/profile-card/)
+**دمو:** 
+<p align="center">
+  <img src="./Demo.jpg" alt="Profile Card Preview" width="720">
+</p>
+
 **مجوز:** MIT
 
 ---
