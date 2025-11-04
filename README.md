@@ -1,7 +1,7 @@
 # Radikal Profile Card (v7.3 — Cyber-Minimal)
 
 **Author:** [Mohammad Shirvani (Radikal)](https://github.com/0xradikal)
-**Live Demo:** [0xradikal.github.io/profile-card](https://0xradikal.github.io/profile-card/)
+**Demo:** [Profile Card View](https://github.com/0xRadikal/profile-card/Demo.jpg)
 **License:** MIT
 
 ---
