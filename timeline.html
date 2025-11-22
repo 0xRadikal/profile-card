@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="fa" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Timeline • Radikal</title>
+  <meta name="color-scheme" content="dark light" />
+  <link rel="stylesheet" href="profile-card.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Rubik:wght@400;600;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="bg" aria-hidden="true">
+    <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
+    <div class="hud">
+      <div class="scanline"></div><div class="hud-corner tl"></div><div class="hud-corner tr"></div><div class="hud-corner bl"></div><div class="hud-corner br"></div>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <section class="page" aria-labelledby="timeline-title">
+      <header class="page__header">
+        <h1 id="timeline-title">Timeline حرفه‌ای</h1>
+        <a class="btn btn--ghost term" href="/profile-card/">&larr; بازگشت</a>
+      </header>
+      <div class="timeline" id="timeline" aria-live="polite"></div>
+    </section>
+  </main>
+
+<script>
+  (function(){
+    const items = [
+      {year:'2021', title:'CryptoPIA', desc:'ایجاد کامیونیتی و اتاق فکر DeFi'},
+      {year:'2022', title:'NodeOps', desc:'گسترش ناوگان ولیدیتورها و مانیتورینگ'},
+      {year:'2023', title:'Security Lab', desc:'توسعه ابزار تحلیل تراکنش و ریسک'},
+      {year:'2024', title:'TON Research', desc:'تمرکز بر تون و زیرساخت‌های مرتبط'},
+    ];
+    const wrap = document.getElementById('timeline');
+    const setTheme = ()=>{ const sys = matchMedia('(prefers-color-scheme: light)').matches ? 'light':'dark'; const pref = localStorage.getItem('theme')||sys; document.documentElement.setAttribute('data-theme', pref); };
+    setTheme();
+    wrap.innerHTML = items.map(i=>`<div class="timeline__item"><strong>${i.year}</strong> — <span>${i.title}</span><div class="muted">${i.desc}</div></div>`).join('');
+  })();
+</script>
+</body>
+</html>
