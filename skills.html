@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="fa" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Skills • Radikal</title>
+  <meta name="color-scheme" content="dark light" />
+  <link rel="stylesheet" href="profile-card.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Rubik:wght@400;600;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="bg" aria-hidden="true">
+    <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
+    <div class="hud"><div class="scanline"></div><div class="hud-corner tl"></div><div class="hud-corner tr"></div><div class="hud-corner bl"></div><div class="hud-corner br"></div></div>
+  </div>
+
+  <main class="wrap">
+    <section class="page" aria-labelledby="skills-title">
+      <header class="page__header">
+        <h1 id="skills-title">مهارت‌ها و استک</h1>
+        <a class="btn btn--ghost term" href="/profile-card/">&larr; بازگشت</a>
+      </header>
+      <div class="grid" id="skillGrid"></div>
+      <div class="chart" id="chart" aria-hidden="true"></div>
+    </section>
+  </main>
+
+<script>
+  (function(){
+    const skills = [
+      {name:'Security', level:0.92},
+      {name:'NodeOps', level:0.9},
+      {name:'JavaScript', level:0.85},
+      {name:'DevRel', level:0.72},
+      {name:'Research', level:0.88},
+    ];
+    const grid = document.getElementById('skillGrid');
+    const chart = document.getElementById('chart');
+    const setTheme = ()=>{ const sys = matchMedia('(prefers-color-scheme: light)').matches ? 'light':'dark'; const pref = localStorage.getItem('theme')||sys; document.documentElement.setAttribute('data-theme', pref); };
+    setTheme();
+    skills.forEach(s=>{
+      const card = document.createElement('article');
+      card.className='card-soft';
+      card.innerHTML = `<h3>${s.name}</h3><div class="progress" aria-label="${s.name}"><span class="progress__bar" style="--w:${s.level*100}%"></span></div><p class="muted mono">${Math.round(s.level*100)}%</p>`;
+      grid.appendChild(card);
+    });
+    skills.forEach(s=>{
+      const bar = document.createElement('div');
+      bar.className='chart__bar';
+      bar.style.setProperty('--v', s.level);
+      bar.innerHTML = `<span></span><label>${s.name}</label>`;
+      chart.appendChild(bar);
+    });
+  })();
+</script>
+</body>
+</html>

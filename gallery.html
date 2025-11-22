@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="fa" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gallery • Radikal</title>
+  <meta name="color-scheme" content="dark light" />
+  <link rel="stylesheet" href="profile-card.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Rubik:wght@400;600;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="bg" aria-hidden="true">
+    <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
+    <div class="hud">
+      <div class="scanline"></div><div class="hud-corner tl"></div><div class="hud-corner tr"></div><div class="hud-corner bl"></div><div class="hud-corner br"></div>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <section class="page" aria-labelledby="gallery-title">
+      <header class="page__header">
+        <h1 id="gallery-title">گالری نمونه‌کار</h1>
+        <a class="btn btn--ghost term" href="/profile-card/">&larr; بازگشت</a>
+      </header>
+      <p class="muted">تصاویر ماک از داشبوردها، نودها و صفحات محصول.</p>
+      <div class="gallery" id="gallery"></div>
+      <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+        <img alt="نمایش تصویر" id="lightboxImg" />
+      </div>
+    </section>
+  </main>
+
+<script>
+  (function(){
+    const pics = [
+      'https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80'
+    ];
+    const grid = document.getElementById('gallery');
+    const lightbox = document.getElementById('lightbox');
+    const img = document.getElementById('lightboxImg');
+    const setTheme = ()=>{ const sys = matchMedia('(prefers-color-scheme: light)').matches ? 'light':'dark'; const pref = localStorage.getItem('theme')||sys; document.documentElement.setAttribute('data-theme', pref); };
+    setTheme();
+    pics.forEach(src=>{
+      const el = document.createElement('img');
+      el.src = src; el.alt = 'نمونه کار';
+      el.addEventListener('click', ()=>{ img.src = src; lightbox.classList.add('is-open'); });
+      grid.appendChild(el);
+    });
+    lightbox?.addEventListener('click', ()=>lightbox.classList.remove('is-open'));
+  })();
+</script>
+</body>
+</html>

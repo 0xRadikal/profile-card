@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="fa" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Blog • Radikal</title>
+  <meta name="color-scheme" content="dark light" />
+  <link rel="stylesheet" href="profile-card.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Rubik:wght@400;600;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="bg" aria-hidden="true">
+    <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
+    <div class="hud">
+      <div class="scanline"></div><div class="hud-corner tl"></div><div class="hud-corner tr"></div><div class="hud-corner bl"></div><div class="hud-corner br"></div>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <section class="page" aria-labelledby="blog-title">
+      <header class="page__header">
+        <h1 id="blog-title">وبلاگ و مقالات</h1>
+        <a class="btn btn--ghost term" href="/profile-card/">&larr; بازگشت</a>
+      </header>
+
+      <div class="filters">
+        <input id="search" class="search__input" type="search" placeholder="> جستجو" aria-label="جستجو" />
+        <button class="chip" data-tag="all">همه</button>
+        <button class="chip" data-tag="Infra">Infra</button>
+        <button class="chip" data-tag="Security">Security</button>
+        <button class="chip" data-tag="Research">Research</button>
+      </div>
+
+      <div id="posts" class="grid" aria-live="polite"></div>
+    </section>
+  </main>
+
+<script>
+  (function(){
+    const posts = [
+      {title:'TON Validators & Playbooks', tag:'Infra', date:'2025-03-01', summary:'مسیر راه‌اندازی و نگهداری ولیدیتورهای TON با اتوماسیون.'},
+      {title:'Wallet Threat Model', tag:'Security', date:'2025-02-10', summary:'چک‌لیست دفاعی و تشخیص فیشینگ در کیف پول‌ها.'},
+      {title:'Governance Automation', tag:'Research', date:'2025-01-12', summary:'ابزارهای خودکار برای رأی‌گیری و KPIهای DAO.'},
+      {title:'Node Ops Playbook', tag:'Infra', date:'2024-12-02', summary:'پایش، هشدار و تکرارپذیری در ناوگان نودها.'},
+    ];
+    const wrap = document.getElementById('posts');
+    const search = document.getElementById('search');
+    const chips = Array.from(document.querySelectorAll('[data-tag]'));
+    let active = 'all';
+    const setTheme = ()=>{ const sys = matchMedia('(prefers-color-scheme: light)').matches ? 'light':'dark'; const pref = localStorage.getItem('theme')||sys; document.documentElement.setAttribute('data-theme', pref); };
+    setTheme();
+
+    function render(){
+      const term = (search.value||'').toLowerCase();
+      wrap.innerHTML = '';
+      posts.filter(p=>{
+        const byTag = active === 'all' || p.tag === active;
+        const byText = !term || p.title.toLowerCase().includes(term) || p.summary.toLowerCase().includes(term);
+        return byTag && byText;
+      }).forEach(p=>{
+        const el = document.createElement('article');
+        el.className='card-soft';
+        el.innerHTML = `<div class="pill">${p.tag}</div><h2>${p.title}</h2><p class="muted mono">${p.date}</p><p>${p.summary}</p><a class="link" href="#">بخوانید</a>`;
+        wrap.appendChild(el);
+      });
+      if(!wrap.children.length){ wrap.innerHTML = '<p class="muted">موردی یافت نشد.</p>'; }
+    }
+    chips.forEach(c=>c.addEventListener('click', ()=>{ active = c.dataset.tag; chips.forEach(x=>x.classList.remove('is-active')); c.classList.add('is-active'); render(); }));
+    search?.addEventListener('input', ()=>render());
+    chips[0].classList.add('is-active');
+    render();
+  })();
+</script>
+</body>
+</html>

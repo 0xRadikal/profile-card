@@ -19,6 +19,15 @@ It’s built to be:
 * **Accessible:** WCAG‑compliant and keyboard‑navigable.
 * **Modular:** Fully theme‑aware (light/dark) and extendable.
 * **Interactive:** Includes a custom command‑line interface (CLI) for fun user interaction.
+* **Installable:** PWA + offline cache via Service Worker.
+
+### What’s new in v8.0
+
+* Extended CLI (blog, skills, social, contact form, timeline, achievements, fetch, theme, easter‑egg).
+* Command suggestions, tab auto‑complete, and persistent history.
+* New pages: `blog.html`, `gallery.html`, `contact.html`, `timeline.html`, `skills.html`.
+* Live GitHub stats, particles, 3D tilt, toast notifications, skeleton loaders.
+* PWA manifest + Service Worker for offline read‑only experience.
 
 ---
 
@@ -61,6 +70,13 @@ Then open:
 ```
 http://localhost:3000
 ```
+
+### Deployment (GitHub Pages)
+
+1. Ensure the repo is hosted under `/profile-card/` path (or adjust links in `manifest.json` and Service Worker).
+2. Build step is not required; deploy static files as-is.
+3. Enable GitHub Pages (root of `main` branch). Assets are <100KB gzip.
+4. PWA: keep `https` and scope `/profile-card/` for install prompt.
 
 ---
 
@@ -122,16 +138,25 @@ The embedded **Radikal CLI** lets users interact with your profile using typed c
 
 ### Available Commands
 
-| Command        | Description                      |
-| -------------- | -------------------------------- |
-| `help` or `h`  | Show available commands          |
-| `ls`           | List accessible files            |
-| `cat resume`   | Open your resume (PDF)           |
-| `cat projects` | Open project list                |
-| `r` / `p`      | Shortcuts for resume / projects  |
-| `whoami`       | Display profile summary          |
-| `status`       | Show node/infrastructure metrics |
-| `clear` / `c`  | Clear CLI output                 |
+| Command            | Description                               |
+| ------------------ | ----------------------------------------- |
+| `help` or `h`      | Show available commands                   |
+| `ls`               | List accessible files                     |
+| `cat resume`       | Open your resume (PDF)                    |
+| `cat projects`     | Open project list                         |
+| `blog`             | List latest mock articles                 |
+| `skills`           | Render skills with progress bars          |
+| `social`           | Social links (GitHub/X/Telegram/LinkedIn) |
+| `contact`          | Inline contact form with validation       |
+| `timeline`         | Career timeline                           |
+| `achievements`     | Badges & awards                           |
+| `fetch <url>`      | Fetch JSON from a public API              |
+| `theme dark|light` | Set theme via CLI                         |
+| `easter-egg`       | Hidden surprise                           |
+| `r` / `p`          | Shortcuts for resume / projects           |
+| `whoami`           | Display profile summary                   |
+| `status`           | Show node/infrastructure metrics          |
+| `clear` / `c`      | Clear CLI output                          |
 
 The terminal automatically stores command history (`localStorage`) and supports **arrow key navigation**.
 
@@ -366,16 +391,25 @@ const files = new Map([
 
 ### دستورات موجود
 
-| دستور          | توضیح                        |
-| -------------- | ---------------------------- |
-| `help` یا `h`  | نمایش لیست دستورات           |
-| `ls`           | فهرست فایل‌ها                |
-| `cat resume`   | باز کردن رزومه PDF           |
-| `cat projects` | باز کردن صفحه پروژه‌ها       |
-| `r` / `p`      | میان‌بر رزومه / پروژه‌ها     |
-| `whoami`       | نمایش اطلاعات کاربر          |
-| `status`       | نمایش وضعیت نودها و پاداش‌ها |
-| `clear` یا `c` | پاک‌کردن خروجی ترمینال       |
+| دستور              | توضیح                              |
+| ------------------ | ---------------------------------- |
+| `help` یا `h`      | نمایش لیست دستورات                 |
+| `ls`               | فهرست فایل‌ها                      |
+| `cat resume`       | باز کردن رزومه PDF                 |
+| `cat projects`     | باز کردن صفحه پروژه‌ها             |
+| `blog`             | نمایش لیست مقالات                  |
+| `skills`           | مهارت‌ها به صورت progress bar      |
+| `social`           | لینک شبکه‌های اجتماعی              |
+| `contact`          | فرم تماس درون ترمینال              |
+| `timeline`         | رویدادهای شغلی                     |
+| `achievements`     | نشان‌ها و جوایز                    |
+| `fetch <url>`      | دریافت JSON از API                 |
+| `theme dark|light` | تغییر تم از CLI                    |
+| `easter-egg`       | ایستر اگ                          |
+| `r` / `p`          | میان‌بر رزومه / پروژه‌ها           |
+| `whoami`           | نمایش اطلاعات کاربر                |
+| `status`           | نمایش وضعیت نودها و پاداش‌ها       |
+| `clear` یا `c`     | پاک‌کردن خروجی ترمینال             |
 
 دستورات ذخیره می‌شوند و با کلیدهای جهت‌نما (↑↓) قابل مرورند.
 

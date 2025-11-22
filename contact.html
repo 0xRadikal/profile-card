@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="fa" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact • Radikal</title>
+  <meta name="color-scheme" content="dark light" />
+  <link rel="stylesheet" href="profile-card.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Rubik:wght@400;600;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="bg" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="hud">
+      <div class="scanline"></div>
+      <div class="hud-corner tl"></div><div class="hud-corner tr"></div><div class="hud-corner bl"></div><div class="hud-corner br"></div>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <section class="page" aria-labelledby="contact-title">
+      <header class="page__header">
+        <h1 id="contact-title">تماس با من</h1>
+        <a class="btn btn--ghost term" href="/profile-card/">&larr; بازگشت</a>
+      </header>
+
+      <p>برای همکاری، مشاوره امنیتی یا گفت‌وگو درباره Web3 می‌توانید از فرم زیر استفاده کنید.</p>
+      <form class="card-form" id="contactForm" novalidate>
+        <label>نام کامل
+          <input name="name" required minlength="2" autocomplete="name" />
+        </label>
+        <label>ایمیل
+          <input name="email" type="email" required autocomplete="email" />
+        </label>
+        <label>موضوع
+          <input name="topic" required />
+        </label>
+        <label>پیام
+          <textarea name="message" rows="4" required minlength="10"></textarea>
+        </label>
+        <div class="cta-bar">
+          <button class="btn btn--primary" type="submit">ارسال</button>
+          <label class="mono"><input type="checkbox" name="copy" /> ارسال یک کپی به ایمیل من</label>
+        </div>
+        <p class="muted mono" id="formHint" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+<script>
+  (function(){
+    const form = document.getElementById('contactForm');
+    const hint = document.getElementById('formHint');
+    const setTheme = ()=>{ const sys = matchMedia('(prefers-color-scheme: light)').matches ? 'light':'dark'; const pref = localStorage.getItem('theme') || sys; document.documentElement.setAttribute('data-theme', pref); };
+    setTheme();
+    form?.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      hint.textContent = '';
+      const data = new FormData(form);
+      const required = ['name','email','topic','message'];
+      const missing = required.find(k=>!(data.get(k)||'').toString().trim());
+      if(missing){ hint.textContent = 'همه فیلدها الزامی هستند'; hint.style.color='#f87171'; return; }
+      hint.textContent = 'پیام ارسال شد (mock) — پاسخ ظرف 24 ساعت.';
+      hint.style.color='var(--text)';
+      form.reset();
+    });
+  })();
+</script>
+</body>
+</html>
