@@ -21,7 +21,10 @@
   <meta property="og:type" content="profile" />
   <meta property="og:image" content="https://0xradikal.github.io/profile-card/preview.png" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#0a0d12" />
+  <link rel="manifest" href="/profile-card/manifest.json" />
   <link rel="icon" href="/profile-card/favicon.png" />
+  <link rel="apple-touch-icon" href="/profile-card/favicon.png" />
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Rubik:wght@400;600;800&display=swap" rel="stylesheet" />
@@ -41,6 +44,9 @@
   </script>
 </head>
 <body>
+  <a class="skip" href="#input">پرش به رابط خط فرمان</a>
+
+  <canvas id="particles" class="particles" aria-hidden="true"></canvas>
 
   <div class="bg" aria-hidden="true">
     <div class="orb orb-1"></div>
@@ -62,6 +68,7 @@
   <main class="wrap">
     <article class="card" role="region" aria-labelledby="name">
       <div class="card__glow" aria-hidden="true"></div>
+      <div class="card__shine" aria-hidden="true"></div>
 
       <header class="card__header stage">
         <button class="theme" id="themeToggle" type="button" aria-label="Toggle theme" aria-pressed="false" title="Theme">
@@ -103,6 +110,30 @@
         <p>Operating multi-chain infra powering DeFi & TON research initiatives. Open to collaborations and infra/security roles.</p>
       </section>
 
+      <section class="live stage" aria-label="Live metrics">
+        <div>
+          <p class="mono subtle">GitHub Stars (live)</p>
+          <p class="metric" id="starsLive" aria-live="polite">...</p>
+        </div>
+        <div>
+          <p class="mono subtle">Latest Commit</p>
+          <p class="metric" id="commitLive" aria-live="polite">fetching…</p>
+        </div>
+      </section>
+
+      <section class="snippet stage" aria-label="Code sample">
+        <div class="snippet__head">
+          <span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span>
+          <span class="mono">vanilla.js</span>
+          <button class="shell__btn" id="copySnippet" type="button">copy</button>
+        </div>
+        <pre class="snippet__body" aria-live="polite"><code id="snippetCode">const secureFetch = async (url) => {
+  const res = await fetch(url, { headers:{'Accept':'application/json'} });
+  if(!res.ok) throw new Error('Network error');
+  return res.json();
+};</code></pre>
+      </section>
+
       <section class="cta stage">
         <a class="btn btn--primary tilt term" href="/profile-card/Radikal-CV.pdf" target="_blank" rel="noopener noreferrer" data-cmd="> resume"></a>
         <a class="btn btn--ghost tilt term" href="/profile-card/projects.html" target="_blank" rel="noopener noreferrer" data-cmd="> projects"></a>
@@ -134,6 +165,8 @@
           <label for="input" class="prompt mono" aria-hidden="true">radikal.eth$</label>
           <input id="input" class="mono" type="text" aria-label="Command input" autocomplete="off" />
         </div>
+
+        <div class="suggestions" id="suggestions" aria-live="polite"></div>
       </section>
 
       <footer class="links stage" aria-label="Links">
@@ -147,6 +180,8 @@
       </div>
     </article>
   </main>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
 
 <script src="index.js">
 </script>

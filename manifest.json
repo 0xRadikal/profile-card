@@ -1,0 +1,12 @@
+{
+  "name": "Radikal Profile Card",
+  "short_name": "Profile",
+  "start_url": "/profile-card/",
+  "display": "standalone",
+  "background_color": "#0a0d12",
+  "theme_color": "#0a0d12",
+  "icons": [
+    {"src": "/profile-card/favicon.png", "sizes":"192x192", "type":"image/png"},
+    {"src": "/profile-card/favicon.png", "sizes":"512x512", "type":"image/png"}
+  ]
+}
