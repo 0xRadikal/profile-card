@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fa" dir="rtl" data-theme="dark">
+<html lang="en" dir="ltr" data-theme="dark">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,23 +20,23 @@
   <main class="wrap">
     <section class="page" aria-labelledby="gallery-title">
       <header class="page__header">
-        <h1 id="gallery-title">گالری نمونه‌کار</h1>
-        <a class="btn btn--ghost term" href="/profile-card/">&larr; بازگشت</a>
+        <h1 id="gallery-title">Portfolio gallery</h1>
+        <a class="btn btn--ghost term" href="/profile-card/en/">&larr; Back</a>
       </header>
 
-      <nav class="site-nav" aria-label="مسیرها">
-        <a class="pill-link" href="/profile-card/">خانه</a>
-        <a class="pill-link" href="/profile-card/projects.html">پروژه‌ها</a>
-        <a class="pill-link" href="/profile-card/blog.html">وبلاگ</a>
-        <a class="pill-link" href="/profile-card/skills.html">مهارت‌ها</a>
-        <a class="pill-link" href="/profile-card/timeline.html">تایم‌لاین</a>
-        <a class="pill-link" href="/profile-card/contact.html">ارتباط</a>
-        <a class="pill-link" href="/profile-card/en/gallery.html" hreflang="en">EN</a>
+      <nav class="site-nav" aria-label="Routes">
+        <a class="pill-link" href="/profile-card/en/">Home</a>
+        <a class="pill-link" href="/profile-card/en/projects.html">Projects</a>
+        <a class="pill-link" href="/profile-card/en/blog.html">Blog</a>
+        <a class="pill-link" href="/profile-card/en/skills.html">Skills</a>
+        <a class="pill-link" href="/profile-card/en/timeline.html">Timeline</a>
+        <a class="pill-link" href="/profile-card/en/contact.html">Contact</a>
+        <a class="pill-link" href="/profile-card/" hreflang="fa">FA</a>
       </nav>
-      <p class="muted">تصاویر ماک از داشبوردها، نودها و صفحات محصول.</p>
+      <p class="muted">Mock shots of dashboards, nodes, and product pages.</p>
       <div class="gallery" id="gallery"></div>
       <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
-        <img alt="نمایش تصویر" id="lightboxImg" />
+        <img alt="Display image" id="lightboxImg" />
       </div>
     </section>
   </main>
@@ -56,7 +56,7 @@
     setTheme();
     pics.forEach(src=>{
       const el = document.createElement('img');
-      el.src = src; el.alt = 'نمونه کار';
+      el.src = src; el.alt = 'Work sample';
       el.addEventListener('click', ()=>{ img.src = src; lightbox.classList.add('is-open'); });
       grid.appendChild(el);
     });
