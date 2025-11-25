@@ -59,21 +59,28 @@ if(cardEl){
 
 // ===== Particles =====
 if(particleCanvas){
-  const ctx = particleCanvas.getContext('2d');
-  const particles = Array.from({length:80}, ()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,vx:(Math.random()-.5)*0.6,vy:(Math.random()-.5)*0.6,r:Math.random()*2+0.5}));
-  const render = ()=>{
-    particleCanvas.width = innerWidth;
-    particleCanvas.height = innerHeight;
-    ctx.clearRect(0,0,particleCanvas.width,particleCanvas.height);
-    particles.forEach(p=>{
-      p.x += p.vx; p.y += p.vy;
-      if(p.x<0||p.x>innerWidth) p.vx*=-1;
-      if(p.y<0||p.y>innerHeight) p.vy*=-1;
-      ctx.beginPath(); ctx.fillStyle='rgba(124,58,237,0.35)';
-      ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill();
-    });
-    requestAnimationFrame(render);
-  }; render();
+  const prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!prefersReduced){
+    const ctx = particleCanvas.getContext('2d');
+    const particles = Array.from({length:80}, ()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,vx:(Math.random()-.5)*0.6,vy:(Math.random()-.5)*0.6,r:Math.random()*2+0.5}));
+    const resize = ()=>{
+      particleCanvas.width = innerWidth;
+      particleCanvas.height = innerHeight;
+    };
+    resize();
+    addEventListener('resize', resize, {passive:true});
+    const render = ()=>{
+      ctx.clearRect(0,0,particleCanvas.width,particleCanvas.height);
+      particles.forEach(p=>{
+        p.x += p.vx; p.y += p.vy;
+        if(p.x<0||p.x>particleCanvas.width) p.vx*=-1;
+        if(p.y<0||p.y>particleCanvas.height) p.vy*=-1;
+        ctx.beginPath(); ctx.fillStyle='rgba(124,58,237,0.35)';
+        ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill();
+      });
+      requestAnimationFrame(render);
+    }; render();
+  }
 }
 
 // ===== Toast =====
@@ -287,10 +294,27 @@ function showMatches(val){
 // ===== Fetch command =====
 async function fetchCommand(url){
   if(!url){ printText('Usage: fetch https://api.github.com/...','err'); return; }
+  let parsed;
+  try {
+    parsed = new URL(url, location.href);
+  } catch (_){
+    printText('Invalid URL. Use https://example.com','err');
+    return;
+  }
+  if(!['https:','http:'].includes(parsed.protocol)){
+    printText('Only http(s) requests are allowed','err');
+    return;
+  }
+  const sameOrigin = parsed.origin === location.origin;
+  const allowlisted = ['api.github.com','github.com'].some(host=>parsed.hostname.endsWith(host));
+  if(!sameOrigin && !allowlisted){
+    printText('Cross-origin fetch blocked. Try GitHub APIs or same-origin paths.','err');
+    return;
+  }
   printHTML(`<div class='skeleton' style='height:18px'></div>`,'info');
   try{
-    const res = await fetch(url, {headers:{'Accept':'application/json'}});
-    if(!res.ok) throw new Error(res.statusText);
+    const res = await fetch(parsed.toString(), {headers:{'Accept':'application/json'}});
+    if(!res.ok) throw new Error(`${res.status} ${res.statusText}`);
     const json = await res.json();
     const pretty = JSON.stringify(json,null,2).slice(0,800);
     printHTML(`<pre class='tbl'>${pretty}</pre>`,'ok');
@@ -304,11 +328,10 @@ async function hydrateGitHub(){
   if(!starsEl || !commitEl) return;
   try{
     const repoRes = await fetch('https://api.github.com/repos/0xradikal/profile-card');
-    if(repoRes.ok){
-      const data = await repoRes.json();
-      starsEl.textContent = `${data.stargazers_count || 0}★`;
-      commitEl.textContent = new Date(data.pushed_at).toLocaleDateString();
-    }
+    if(!repoRes.ok) throw new Error(repoRes.statusText);
+    const data = await repoRes.json();
+    starsEl.textContent = `${data.stargazers_count || 0}★`;
+    commitEl.textContent = new Date(data.pushed_at).toLocaleDateString();
   }catch(_){ starsEl.textContent='offline'; commitEl.textContent='offline'; }
 }
 hydrateGitHub();
