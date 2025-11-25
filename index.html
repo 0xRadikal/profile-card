@@ -128,22 +128,248 @@
           <button class="shell__btn" id="copySnippet" type="button">copy</button>
         </div>
         <pre class="snippet__body" aria-live="polite"><code id="snippetCode">const secureFetch = async (url) => {
-  const res = await fetch(url, { headers:{'Accept':'application/json'} });
-  if(!res.ok) throw new Error('Network error');
+  const res = await fetch(url, { headers: { 'Accept': 'application/json' } });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
   return res.json();
+};
+
+const debounce = (fn, wait = 180) => {
+  let t; return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), wait); };
 };</code></pre>
       </section>
 
 
       <nav class="site-nav stage" aria-label="لینک‌های سریع">
-        <a class="pill-link" href="./index.html">خانه</a>
-        <a class="pill-link" href="./projects.html">پروژه‌ها</a>
-        <a class="pill-link" href="./blog.html">وبلاگ</a>
-        <a class="pill-link" href="./gallery.html">گالری</a>
-        <a class="pill-link" href="./skills.html">مهارت‌ها</a>
-        <a class="pill-link" href="./timeline.html">تایم‌لاین</a>
-        <a class="pill-link" href="./contact.html">ارتباط</a>
+        <a class="pill-link" href="#projects">پروژه‌ها</a>
+        <a class="pill-link" href="#blog">وبلاگ</a>
+        <a class="pill-link" href="#gallery">گالری</a>
+        <a class="pill-link" href="#skills">مهارت‌ها</a>
+        <a class="pill-link" href="#timeline">تایم‌لاین</a>
+        <a class="pill-link" href="#contact">ارتباط</a>
       </nav>
+
+      <section class="section stage" id="projects" aria-labelledby="projects-title">
+        <div class="section__head">
+          <p class="eyebrow">پروژه‌ها</p>
+          <h2 class="section__title" id="projects-title">نمونه کارهای منتخب</h2>
+          <p class="section__lead">از زیرساخت ولیدیتور تا محصولات امنیتی و محتوایی.</p>
+        </div>
+        <div class="grid grid--cards">
+          <article class="panel">
+            <div class="panel__top">
+              <p class="pill pill--ghost">Community</p>
+              <span class="mono subtle">۶.۵k عضو</span>
+            </div>
+            <h3 class="panel__title">CryptoPIA</h3>
+            <p class="panel__text">جامعه فارسی زبان برای تحقیق دیفای و TON با جلسات آموزشی و اتوماسیون محتوا.</p>
+            <ul class="panel__list mono">
+              <li>گرداننده و استراتژیست محتوا</li>
+              <li>تحلیل on-chain و ورکشاپ</li>
+            </ul>
+            <div class="panel__actions">
+              <a class="btn btn--ghost term" href="https://t.me/crypttopiaa" target="_blank" rel="noopener">&gt; join</a>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel__top">
+              <p class="pill pill--ghost">Infra • Security</p>
+              <span class="mono subtle">۹۹.۹٪ uptime</span>
+            </div>
+            <h3 class="panel__title">Node Ops</h3>
+            <p class="panel__text">فلیت ولیدیتور چند زنجیره‌ای با داشبورد مانیتورینگ، آلارم و سخت‌سازی امنیتی.</p>
+            <ul class="panel__list mono">
+              <li>Prometheus / Grafana</li>
+              <li>Failover + PagerDuty style alerts</li>
+            </ul>
+            <div class="panel__actions">
+              <span class="chip">TON</span><span class="chip">EVM</span><span class="chip">Solana</span>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel__top">
+              <p class="pill pill--ghost">Product</p>
+              <span class="mono subtle">Secure by design</span>
+            </div>
+            <h3 class="panel__title">Raydikal VPN</h3>
+            <p class="panel__text">VPN با پلن‌های چند دستگاهی، پنل مدیریت و ربات تلگرام برای صدور و تمدید.</p>
+            <ul class="panel__list mono">
+              <li>Stack: Node.js, Docker</li>
+              <li>اتوماتیک‌سازی صدور و متریک</li>
+            </ul>
+            <div class="panel__actions">
+              <a class="btn btn--ghost term" href="#contact">&gt; demo</a>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel__top">
+              <p class="pill pill--ghost">Security Tools</p>
+              <span class="mono subtle">Forensics</span>
+            </div>
+            <h3 class="panel__title">Wallet Watch</h3>
+            <p class="panel__text">بسته اسکریپت برای ردیابی تراکنش، هشدار فیشینگ و ارزیابی ریسک کیف‌پول.</p>
+            <ul class="panel__list mono">
+              <li>Webhook + Telegram alerts</li>
+              <li>جستجوی ایونت و آدرس مشکوک</li>
+            </ul>
+            <div class="panel__actions">
+              <a class="btn btn--ghost term" href="#blog">&gt; read notes</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section stage" id="blog" aria-labelledby="blog-title">
+        <div class="section__head">
+          <p class="eyebrow">وبلاگ</p>
+          <h2 class="section__title" id="blog-title">یادداشت‌های تازه</h2>
+          <p class="section__lead">نمونه مقالات فنی و تجربه‌های عملیات.</p>
+        </div>
+        <div class="blog-list">
+          <article class="blog-card">
+            <div>
+              <p class="pill pill--ghost">Infra</p>
+              <p class="blog-date mono">مارس ۲۰۲۵</p>
+            </div>
+            <h3 class="blog-title">Playbook مانیتورینگ ولیدیتور TON</h3>
+            <p class="blog-desc">چک‌لیست راه‌اندازی نود، آلارم‌های حیاتی و بهینه‌سازی latency در شبکه‌های PoS.</p>
+            <a class="link" href="#timeline">مطالعه خلاصه →</a>
+          </article>
+          <article class="blog-card">
+            <div>
+              <p class="pill pill--ghost">Security</p>
+              <p class="blog-date mono">فوریه ۲۰۲۵</p>
+            </div>
+            <h3 class="blog-title">مدل تهدید برای کیف‌پول‌های دیفای</h3>
+            <p class="blog-desc">سناریوهای حمله رایج، لیست چک سخت‌سازی و روش‌های پایش تراکنش‌های پرریسک.</p>
+            <a class="link" href="#contact">درخواست مشاوره →</a>
+          </article>
+          <article class="blog-card">
+            <div>
+              <p class="pill pill--ghost">Research</p>
+              <p class="blog-date mono">ژانویه ۲۰۲۵</p>
+            </div>
+            <h3 class="blog-title">اتوماسیون رأی‌گیری DAO</h3>
+            <p class="blog-desc">طراحی بات تلگرام برای پیشنهاد، رأی‌گیری و گزارش وضعیت قراردادهای حاکمیتی.</p>
+            <a class="link" href="#projects">دیدن پروژه مرتبط →</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="section stage" id="gallery" aria-labelledby="gallery-title">
+        <div class="section__head">
+          <p class="eyebrow">گالری</p>
+          <h2 class="section__title" id="gallery-title">تصاویر و داشبوردها</h2>
+          <p class="section__lead">برش‌هایی از داشبورد، ورکشاپ و دیزاین.</p>
+        </div>
+        <div class="gallery">
+          <figure class="gallery__item">
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80" alt="گراف مانیتورینگ سرور" loading="lazy" />
+            <figcaption class="mono subtle">Grafana uptime dashboard</figcaption>
+          </figure>
+          <figure class="gallery__item">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80" alt="میز کار با لپ‌تاپ و کد" loading="lazy" />
+            <figcaption class="mono subtle">Node ops runbook</figcaption>
+          </figure>
+          <figure class="gallery__item">
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80" alt="نمایش اسلاید آموزشی" loading="lazy" />
+            <figcaption class="mono subtle">Workshop deck</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section stage" id="skills" aria-labelledby="skills-title">
+        <div class="section__head">
+          <p class="eyebrow">مهارت‌ها</p>
+          <h2 class="section__title" id="skills-title">جایی که تجربه دارم</h2>
+          <p class="section__lead">ترکیب تحقیق، دیفای و مهندسی زیرساخت.</p>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <div class="skill-card__top">
+              <h3>Security Engineering</h3>
+              <span class="mono subtle">92%</span>
+            </div>
+            <p>حسابرسی کانفیگ، تهدیدشناسی و اتوماسیون واکنش.</p>
+            <div class="progress" aria-label="امنیت"><span class="progress__bar" style="--w:92%"></span></div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-card__top">
+              <h3>Node Ops / SRE</h3>
+              <span class="mono subtle">90%</span>
+            </div>
+            <p>راه‌اندازی نود، مانیتورینگ و بقاپذیری سرویس.</p>
+            <div class="progress" aria-label="Node Ops"><span class="progress__bar" style="--w:90%"></span></div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-card__top">
+              <h3>JavaScript Front-end</h3>
+              <span class="mono subtle">85%</span>
+            </div>
+            <p>اپلیکیشن‌های واکنش‌گرا، PWA و بهینه‌سازی عملکرد.</p>
+            <div class="progress" aria-label="Front-end"><span class="progress__bar" style="--w:85%"></span></div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-card__top">
+              <h3>DeFi Research</h3>
+              <span class="mono subtle">88%</span>
+            </div>
+            <p>آنالیز پروتکل، ردیابی جریان سرمایه و تدوین پلی‌بوک.</p>
+            <div class="progress" aria-label="DeFi"><span class="progress__bar" style="--w:88%"></span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section stage" id="timeline" aria-labelledby="timeline-title">
+        <div class="section__head">
+          <p class="eyebrow">تایم‌لاین</p>
+          <h2 class="section__title" id="timeline-title">مسیر کوتاه</h2>
+          <p class="section__lead">نمونه نقاط عطف حرفه‌ای.</p>
+        </div>
+        <div class="timeline timeline--inline">
+          <div class="timeline__item"><strong>۲۰۲۱</strong><div>تأسیس CryptoPIA و شروع تولید محتوا.</div></div>
+          <div class="timeline__item"><strong>۲۰۲۲</strong><div>گسترش نودهای TON و EVM با ۹۹.۹٪ آپ‌تایم.</div></div>
+          <div class="timeline__item"><strong>۲۰۲۳</strong><div>ساخت تولکیت Wallet Watch برای فورنزیک.</div></div>
+          <div class="timeline__item"><strong>۲۰۲۴</strong><div>مرور امنیتی برای محصولات دیفای و ابزار DAO.</div></div>
+        </div>
+      </section>
+
+      <section class="section stage" id="contact" aria-labelledby="contact-title">
+        <div class="section__head">
+          <p class="eyebrow">Contact</p>
+          <h2 class="section__title" id="contact-title">راه‌های ارتباط</h2>
+          <p class="section__lead">مثال تماس و فرم سریع را پر کردم تا آماده استفاده باشد.</p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-card">
+            <h3>راه‌های سریع</h3>
+            <ul class="contact-list mono">
+              <li><span>ایمیل:</span> <a href="mailto:radikal@example.com">radikal@example.com</a></li>
+              <li><span>تلگرام:</span> <a href="https://t.me/Oxradikal" target="_blank" rel="noopener">@Oxradikal</a></li>
+              <li><span>گیت‌هاب:</span> <a href="https://github.com/0xradikal" target="_blank" rel="noopener">0xradikal</a></li>
+              <li><span>لینکدین:</span> <a href="https://www.linkedin.com/in/0xradikal" target="_blank" rel="noopener">linkedin.com/in/0xradikal</a></li>
+              <li><span>تلفن:</span> +98 912 000 1234</li>
+            </ul>
+          </div>
+          <div class="contact-card">
+            <h3>فرم تماس</h3>
+            <form class="card-form" aria-label="فرم تماس">
+              <label>نام
+                <input name="name" required minlength="2" value="مخاطب نمونه" />
+              </label>
+              <label>ایمیل
+                <input name="email" type="email" required value="sample@example.com" />
+              </label>
+              <label>پیام
+                <textarea name="msg" rows="3" required minlength="10">سلام! برای همکاری روی مانیتورینگ نود تماس می‌گیرم.</textarea>
+              </label>
+              <button class="btn btn--primary" type="submit">ارسال</button>
+            </form>
+          </div>
+        </div>
+      </section>
 
       <!-- =========================
            Interactive Shell (v7.3)
