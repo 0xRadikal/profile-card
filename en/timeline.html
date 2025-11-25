@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fa" dir="rtl" data-theme="dark">
+<html lang="en" dir="ltr" data-theme="dark">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,17 +20,17 @@
   <main class="wrap">
     <section class="page" aria-labelledby="timeline-title">
       <header class="page__header">
-        <h1 id="timeline-title">Timeline حرفه‌ای</h1>
-        <a class="btn btn--ghost term" href="/profile-card/">&larr; بازگشت</a>
+        <h1 id="timeline-title">Professional timeline</h1>
+        <a class="btn btn--ghost term" href="/profile-card/en/">&larr; Back</a>
       </header>
-      <nav class="site-nav" aria-label="مسیرها">
-        <a class="pill-link" href="/profile-card/">خانه</a>
-        <a class="pill-link" href="/profile-card/projects.html">پروژه‌ها</a>
-        <a class="pill-link" href="/profile-card/blog.html">وبلاگ</a>
-        <a class="pill-link" href="/profile-card/gallery.html">گالری</a>
-        <a class="pill-link" href="/profile-card/skills.html">مهارت‌ها</a>
-        <a class="pill-link" href="/profile-card/contact.html">ارتباط</a>
-        <a class="pill-link" href="/profile-card/en/timeline.html" hreflang="en">EN</a>
+      <nav class="site-nav" aria-label="Routes">
+        <a class="pill-link" href="/profile-card/en/">Home</a>
+        <a class="pill-link" href="/profile-card/en/projects.html">Projects</a>
+        <a class="pill-link" href="/profile-card/en/blog.html">Blog</a>
+        <a class="pill-link" href="/profile-card/en/gallery.html">Gallery</a>
+        <a class="pill-link" href="/profile-card/en/skills.html">Skills</a>
+        <a class="pill-link" href="/profile-card/en/contact.html">Contact</a>
+        <a class="pill-link" href="/profile-card/" hreflang="fa">FA</a>
       </nav>
       <div class="timeline" id="timeline" aria-live="polite"></div>
     </section>
@@ -39,10 +39,10 @@
 <script>
   (function(){
     const items = [
-      {year:'2021', title:'CryptoPIA', desc:'ایجاد کامیونیتی و اتاق فکر DeFi'},
-      {year:'2022', title:'NodeOps', desc:'گسترش ناوگان ولیدیتورها و مانیتورینگ'},
-      {year:'2023', title:'Security Lab', desc:'توسعه ابزار تحلیل تراکنش و ریسک'},
-      {year:'2024', title:'TON Research', desc:'تمرکز بر تون و زیرساخت‌های مرتبط'},
+      {year:'2021', title:'CryptoPIA', desc:'Built a community and DeFi think tank'},
+      {year:'2022', title:'NodeOps', desc:'Expanded validator fleets and monitoring'},
+      {year:'2023', title:'Security Lab', desc:'Developed transaction analysis and risk tools'},
+      {year:'2024', title:'TON Research', desc:'Focused on TON and related infrastructure'},
     ];
     const wrap = document.getElementById('timeline');
     const setTheme = ()=>{ const sys = matchMedia('(prefers-color-scheme: light)').matches ? 'light':'dark'; const pref = localStorage.getItem('theme')||sys; document.documentElement.setAttribute('data-theme', pref); };

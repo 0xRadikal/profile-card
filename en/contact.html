@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fa" dir="rtl" data-theme="dark">
+<html lang="en" dir="ltr" data-theme="dark">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -23,37 +23,37 @@
   <main class="wrap">
     <section class="page" aria-labelledby="contact-title">
       <header class="page__header">
-        <h1 id="contact-title">تماس با من</h1>
-        <a class="btn btn--ghost term" href="/profile-card/">&larr; بازگشت</a>
+        <h1 id="contact-title">Contact me</h1>
+        <a class="btn btn--ghost term" href="/profile-card/en/">&larr; Back</a>
       </header>
 
-      <nav class="site-nav" aria-label="مسیرها">
-        <a class="pill-link" href="/profile-card/">خانه</a>
-        <a class="pill-link" href="/profile-card/projects.html">پروژه‌ها</a>
-        <a class="pill-link" href="/profile-card/blog.html">وبلاگ</a>
-        <a class="pill-link" href="/profile-card/gallery.html">گالری</a>
-        <a class="pill-link" href="/profile-card/skills.html">مهارت‌ها</a>
-        <a class="pill-link" href="/profile-card/timeline.html">تایم‌لاین</a>
-        <a class="pill-link" href="/profile-card/en/contact.html" hreflang="en">EN</a>
+      <nav class="site-nav" aria-label="Routes">
+        <a class="pill-link" href="/profile-card/en/">Home</a>
+        <a class="pill-link" href="/profile-card/en/projects.html">Projects</a>
+        <a class="pill-link" href="/profile-card/en/blog.html">Blog</a>
+        <a class="pill-link" href="/profile-card/en/gallery.html">Gallery</a>
+        <a class="pill-link" href="/profile-card/en/skills.html">Skills</a>
+        <a class="pill-link" href="/profile-card/en/timeline.html">Timeline</a>
+        <a class="pill-link" href="/profile-card/" hreflang="fa">FA</a>
       </nav>
 
-      <p>برای همکاری، مشاوره امنیتی یا گفت‌وگو درباره Web3 می‌توانید از فرم زیر استفاده کنید.</p>
+      <p>Use the form for collaborations, security consulting, or Web3 chats.</p>
       <form class="card-form" id="contactForm" novalidate>
-        <label>نام کامل
+        <label>Full name
           <input name="name" required minlength="2" autocomplete="name" />
         </label>
-        <label>ایمیل
+        <label>Email
           <input name="email" type="email" required autocomplete="email" />
         </label>
-        <label>موضوع
+        <label>Subject
           <input name="topic" required />
         </label>
-        <label>پیام
+        <label>Message
           <textarea name="message" rows="4" required minlength="10"></textarea>
         </label>
         <div class="cta-bar">
-          <button class="btn btn--primary" type="submit">ارسال</button>
-          <label class="mono"><input type="checkbox" name="copy" /> ارسال یک کپی به ایمیل من</label>
+          <button class="btn btn--primary" type="submit">Send</button>
+          <label class="mono"><input type="checkbox" name="copy" /> Send a copy to my email</label>
         </div>
         <p class="muted mono" id="formHint" role="status" aria-live="polite"></p>
       </form>
@@ -72,8 +72,8 @@
       const data = new FormData(form);
       const required = ['name','email','topic','message'];
       const missing = required.find(k=>!(data.get(k)||'').toString().trim());
-      if(missing){ hint.textContent = 'همه فیلدها الزامی هستند'; hint.style.color='#f87171'; return; }
-      hint.textContent = 'پیام ارسال شد (mock) — پاسخ ظرف 24 ساعت.';
+      if(missing){ hint.textContent = 'All fields are required'; hint.style.color='#f87171'; return; }
+      hint.textContent = 'Message sent (mock) — reply within 24 hours.';
       hint.style.color='var(--text)';
       form.reset();
     });
