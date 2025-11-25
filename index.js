@@ -7,6 +7,7 @@
 
 // ===== Helpers =====
 const qs = (s)=>document.querySelector(s);
+const debounce = (fn, wait=140)=>{ let t; return (...args)=>{ clearTimeout(t); t=setTimeout(()=>fn(...args), wait); }; };
 const outEl   = qs('#output');
 const inEl    = qs('#input');
 const helpBtn = qs('#helpBtn');
@@ -20,6 +21,7 @@ const commitEl = qs('#commitLive');
 const snippetCode = qs('#snippetCode');
 const copySnippetBtn = qs('#copySnippet');
 const particleCanvas = qs('#particles');
+const contactForm = qs('#contact form.card-form');
 
 // ===== Theme =====
 const themeBtn = qs('#themeToggle');
@@ -154,12 +156,12 @@ const saveHistory = (cmd)=>{ history.push(cmd); if(history.length>120) history.s
 // ===== Data =====
 const files = new Map([
   ['resume','/profile-card/Radikal-CV.pdf'],
-  ['projects','/profile-card/projects.html'],
-  ['blog','/profile-card/blog.html'],
-  ['contact','/profile-card/contact.html'],
-  ['gallery','/profile-card/gallery.html'],
-  ['timeline','/profile-card/timeline.html'],
-  ['skills','/profile-card/skills.html'],
+  ['projects','/profile-card/#projects'],
+  ['blog','/profile-card/#blog'],
+  ['contact','/profile-card/#contact'],
+  ['gallery','/profile-card/#gallery'],
+  ['timeline','/profile-card/#timeline'],
+  ['skills','/profile-card/#skills'],
 ]);
 
 const blogs = [
@@ -236,6 +238,7 @@ const commands = new Map([
     if(['dark','light','auto'].includes(arg)) setTheme(arg);
     else printText('Usage: theme dark|light|auto','err');
   }}],
+  ['scroll',      {desc:'scroll to a section',             fn: (arg)=>scrollToSection(arg)}],
   ['easter-egg',  {desc:'hidden surprise',                 fn: ()=>{
     printHTML(`<pre class='tbl'>┌─ radikal ─┐\n│ stay curious │\n└───────────┘</pre>`,'ok');
     toast('010101-wow');
@@ -289,6 +292,19 @@ function showMatches(val){
   if(!val){ suggestEl.textContent=''; return; }
   const matches = commandNames.filter(c=>c.startsWith(val));
   suggestEl.innerHTML = matches.length ? `suggestions: <strong>${matches.join('</strong>, <strong>')}</strong>` : '';
+}
+const debouncedSuggest = debounce(showMatches, 120);
+
+function scrollToSection(target){
+  const id = (target || '').replace('#','');
+  if(!id){ printText('Usage: scroll projects', 'err'); return; }
+  const el = document.getElementById(id);
+  if(el){
+    el.scrollIntoView({behavior:'smooth', block:'start'});
+    toast(`jumped to #${id}`);
+  } else {
+    printText(`section not found: ${id}`,'err');
+  }
 }
 
 // ===== Fetch command =====
@@ -345,7 +361,7 @@ copySnippetBtn?.addEventListener('click', async ()=>{
 // ===== CLI input handlers =====
 inEl?.addEventListener('focus', ()=>{ if(matchMedia('(pointer:coarse)').matches) inEl.scrollIntoView({block:'nearest'}); });
 outEl?.addEventListener('keydown', e=>{ if(e.key==='Escape') inEl?.focus(); });
-inEl?.addEventListener('input', (e)=>{ typingAbort = true; showMatches(e.target.value.trim()); });
+inEl?.addEventListener('input', (e)=>{ typingAbort = true; debouncedSuggest(e.target.value.trim()); });
 inEl?.addEventListener('keydown', e=>{
   if(e.key === 'Enter'){
     const cmd = inEl.value.trim();
@@ -393,6 +409,17 @@ outEl?.addEventListener('submit', (e)=>{
   form.reset();
 });
 
+contactForm?.addEventListener('submit', (e)=>{
+  e.preventDefault();
+  const data = new FormData(contactForm);
+  const name = (data.get('name')||'').toString();
+  const email = (data.get('email')||'').toString();
+  const msg = (data.get('msg')||'').toString();
+  toast('پیام نمونه ثبت شد');
+  printText(`Contact form: ${name} • ${email} • ${msg.slice(0,90)}`,'ok');
+  contactForm.reset();
+});
+
 // ===== Boot sequence =====
 async function boot(){
   if(!inEl) return;
@@ -406,7 +433,7 @@ async function boot(){
     '> environment: stable',
     'Radikal CLI v8.0 ready.',
     "Type 'help' to begin.",
-    "New: blog, skills, social, timeline, achievements, fetch, theme, easter-egg"
+    "New: blog, skills, social, timeline, achievements, fetch, theme, scroll, easter-egg"
   ];
   typingAbort = false;
   for(const line of seq){
