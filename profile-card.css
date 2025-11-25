@@ -129,6 +129,12 @@ html[data-theme="light"] .bio-short{color:#1e293b}
 .term{max-width:100%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
 .term::before{content:attr(data-cmd); font-family:"JetBrains Mono","Fira Code",ui-monospace; margin-inline-end:.5rem; opacity:.92}
 
+/* Navigation */
+.site-nav{display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin:14px 0 10px}
+.pill-link{display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:12px; background:var(--glass); border:1px solid color-mix(in oklab, var(--text) 12%, transparent); color:var(--text); text-decoration:none; transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease}
+.pill-link:hover{transform:translateY(-2px); border-color:color-mix(in oklab, var(--brandB) 70%, transparent); box-shadow:0 10px 20px rgba(124,58,237,.12)}
+.pill-link:focus-visible{outline:2px solid color-mix(in oklab, var(--brandB) 70%, transparent); outline-offset:2px}
+
 /* Links */
 .links{display:flex; flex-wrap:wrap; gap:16px; opacity:.95}
 .link{position:relative; color:#8ea5ff; text-decoration:none}
