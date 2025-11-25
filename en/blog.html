@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fa" dir="rtl" data-theme="dark">
+<html lang="en" dir="ltr" data-theme="dark">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,23 +20,23 @@
   <main class="wrap">
     <section class="page" aria-labelledby="blog-title">
       <header class="page__header">
-        <h1 id="blog-title">وبلاگ و مقالات</h1>
-        <a class="btn btn--ghost term" href="/profile-card/">&larr; بازگشت</a>
+        <h1 id="blog-title">Blog & Articles</h1>
+        <a class="btn btn--ghost term" href="/profile-card/en/">&larr; Back</a>
       </header>
 
-      <nav class="site-nav" aria-label="مسیرها">
-        <a class="pill-link" href="/profile-card/">خانه</a>
-        <a class="pill-link" href="/profile-card/projects.html">پروژه‌ها</a>
-        <a class="pill-link" href="/profile-card/gallery.html">گالری</a>
-        <a class="pill-link" href="/profile-card/skills.html">مهارت‌ها</a>
-        <a class="pill-link" href="/profile-card/timeline.html">تایم‌لاین</a>
-        <a class="pill-link" href="/profile-card/contact.html">ارتباط</a>
-        <a class="pill-link" href="/profile-card/en/blog.html" hreflang="en">EN</a>
+      <nav class="site-nav" aria-label="Routes">
+        <a class="pill-link" href="/profile-card/en/">Home</a>
+        <a class="pill-link" href="/profile-card/en/projects.html">Projects</a>
+        <a class="pill-link" href="/profile-card/en/gallery.html">Gallery</a>
+        <a class="pill-link" href="/profile-card/en/skills.html">Skills</a>
+        <a class="pill-link" href="/profile-card/en/timeline.html">Timeline</a>
+        <a class="pill-link" href="/profile-card/en/contact.html">Contact</a>
+        <a class="pill-link" href="/profile-card/" hreflang="fa">FA</a>
       </nav>
 
       <div class="filters">
-        <input id="search" class="search__input" type="search" placeholder="> جستجو" aria-label="جستجو" />
-        <button class="chip" data-tag="all">همه</button>
+        <input id="search" class="search__input" type="search" placeholder="> Search" aria-label="Search" />
+        <button class="chip" data-tag="all">All</button>
         <button class="chip" data-tag="Infra">Infra</button>
         <button class="chip" data-tag="Security">Security</button>
         <button class="chip" data-tag="Research">Research</button>
@@ -49,10 +49,10 @@
 <script>
   (function(){
     const posts = [
-      {title:'TON Validators & Playbooks', tag:'Infra', date:'2025-03-01', summary:'مسیر راه‌اندازی و نگهداری ولیدیتورهای TON با اتوماسیون.'},
-      {title:'Wallet Threat Model', tag:'Security', date:'2025-02-10', summary:'چک‌لیست دفاعی و تشخیص فیشینگ در کیف پول‌ها.'},
-      {title:'Governance Automation', tag:'Research', date:'2025-01-12', summary:'ابزارهای خودکار برای رأی‌گیری و KPIهای DAO.'},
-      {title:'Node Ops Playbook', tag:'Infra', date:'2024-12-02', summary:'پایش، هشدار و تکرارپذیری در ناوگان نودها.'},
+      {title:'TON Validators & Playbooks', tag:'Infra', date:'2025-03-01', summary:'TON validator setup, maintenance, and automation.'},
+      {title:'Wallet Threat Model', tag:'Security', date:'2025-02-10', summary:'Defensive checklist and phishing detection for wallets.'},
+      {title:'Governance Automation', tag:'Research', date:'2025-01-12', summary:'Automation for voting and DAO KPIs.'},
+      {title:'Node Ops Playbook', tag:'Infra', date:'2024-12-02', summary:'Monitoring, alerting, and repeatability in node fleets.'},
     ];
     const wrap = document.getElementById('posts');
     const search = document.getElementById('search');
@@ -71,10 +71,10 @@
       }).forEach(p=>{
         const el = document.createElement('article');
         el.className='card-soft';
-        el.innerHTML = `<div class="pill">${p.tag}</div><h2>${p.title}</h2><p class="muted mono">${p.date}</p><p>${p.summary}</p><a class="link" href="#">بخوانید</a>`;
+        el.innerHTML = `<div class="pill">${p.tag}</div><h2>${p.title}</h2><p class="muted mono">${p.date}</p><p>${p.summary}</p><a class="link" href="#">Read</a>`;
         wrap.appendChild(el);
       });
-      if(!wrap.children.length){ wrap.innerHTML = '<p class="muted">موردی یافت نشد.</p>'; }
+      if(!wrap.children.length){ wrap.innerHTML = '<p class="muted">No posts found.</p>'; }
     }
     chips.forEach(c=>c.addEventListener('click', ()=>{ active = c.dataset.tag; chips.forEach(x=>x.classList.remove('is-active')); c.classList.add('is-active'); render(); }));
     search?.addEventListener('input', ()=>render());
