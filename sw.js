@@ -10,6 +10,13 @@ const ASSETS = [
   '/profile-card/gallery.html',
   '/profile-card/skills.html',
   '/profile-card/timeline.html',
+  '/profile-card/en/index.html',
+  '/profile-card/en/projects.html',
+  '/profile-card/en/contact.html',
+  '/profile-card/en/blog.html',
+  '/profile-card/en/gallery.html',
+  '/profile-card/en/skills.html',
+  '/profile-card/en/timeline.html',
   '/profile-card/manifest.json'
 ];
 self.addEventListener('install', (event)=>{
