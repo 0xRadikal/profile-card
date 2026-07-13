@@ -1,9 +1,17 @@
-const CACHE = 'profile-card-v3';
+const CACHE = 'profile-card-v4';
 const ASSETS = [
   '/', '/profile-card/',
   '/profile-card/index.html',
   '/profile-card/profile-card.css',
   '/profile-card/index.js',
+  '/profile-card/data/content.js',
+  '/profile-card/pages/theme.js',
+  '/profile-card/pages/blog.js',
+  '/profile-card/pages/skills.js',
+  '/profile-card/pages/timeline.js',
+  '/profile-card/pages/gallery.js',
+  '/profile-card/pages/contact.js',
+  '/profile-card/pages/projects.js',
   '/profile-card/favicon.svg',
   '/profile-card/manifest.json',
   '/profile-card/projects.html',
