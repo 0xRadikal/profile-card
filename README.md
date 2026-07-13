@@ -41,7 +41,6 @@ profile-card/
 ├── index.js                # JS logic (theme toggle + CLI)
 ├── favicon.png             # Site icon
 ├── preview.png             # Social preview (for OpenGraph / Twitter)
-├── Radikal-CV.pdf          # Resume (linked via CLI)
 ├── projects.html           # Projects list (optional)
 └── README.md               # Documentation (this file)
 ```
@@ -142,7 +141,7 @@ The embedded **Radikal CLI** lets users interact with your profile using typed c
 | ------------------ | ----------------------------------------- |
 | `help` or `h`      | Show available commands                   |
 | `ls`               | List accessible files                     |
-| `cat resume`       | Open your resume (PDF)                    |
+| `cat resume`       | Open resume / GitHub profile              |
 | `cat projects`     | Open project list                         |
 | `blog`             | List latest mock articles                 |
 | `skills`           | Render skills with progress bars          |
@@ -303,7 +302,6 @@ profile-card/
 ├── index.js                # منطق JavaScript (تغییر تم + CLI)
 ├── favicon.png             # آیکون سایت
 ├── preview.png             # تصویر پیش‌نمایش برای شبکه‌های اجتماعی
-├── Radikal-CV.pdf          # فایل رزومه (برای دستور cat resume)
 ├── projects.html           # صفحه پروژه‌ها (اختیاری)
 └── README.md               # مستندات پروژه
 ```
@@ -395,7 +393,7 @@ const files = new Map([
 | ------------------ | ---------------------------------- |
 | `help` یا `h`      | نمایش لیست دستورات                 |
 | `ls`               | فهرست فایل‌ها                      |
-| `cat resume`       | باز کردن رزومه PDF                 |
+| `cat resume`       | باز کردن رزومه / پروفایل گیت‌هاب   |
 | `cat projects`     | باز کردن صفحه پروژه‌ها             |
 | `blog`             | نمایش لیست مقالات                  |
 | `skills`           | مهارت‌ها به صورت progress bar      |
