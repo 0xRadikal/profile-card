@@ -344,15 +344,50 @@ async function fetchCommand(url){
 }
 
 // ===== Live GitHub =====
+// The unauthenticated GitHub REST API is limited to 60 req/hour per IP, so a
+// naive fetch-on-every-load shows "offline" under any real traffic. We cache
+// the result in localStorage with a TTL to drastically cut request volume.
+// For a fully rate-limit-proof setup, prefer build-time hydration: a scheduled
+// GitHub Action writing stars/pushed_at into a static JSON committed to the
+// repo, then fetch that same-origin file instead of api.github.com.
+const GH_CACHE_KEY = 'gh_stats_cache';
+const GH_TTL_MS = 6 * 60 * 60 * 1000; // 6 hours
+
+function renderGitHub(stars, pushedAt){
+  if(starsEl) starsEl.textContent = `${stars || 0}★`;
+  if(commitEl) commitEl.textContent = pushedAt ? new Date(pushedAt).toLocaleDateString() : 'offline';
+}
+
 async function hydrateGitHub(){
   if(!starsEl || !commitEl) return;
+  // 1) Serve from cache immediately if fresh.
+  try{
+    const cached = JSON.parse(localStorage.getItem(GH_CACHE_KEY) || 'null');
+    if(cached && (Date.now() - cached.ts) < GH_TTL_MS){
+      renderGitHub(cached.stars, cached.pushed_at);
+      return;
+    }
+  }catch(_){ /* ignore corrupt cache */ }
+
+  // 2) Otherwise fetch, render, and refresh the cache.
   try{
     const repoRes = await fetch('https://api.github.com/repos/0xradikal/profile-card');
     if(!repoRes.ok) throw new Error(repoRes.statusText);
     const data = await repoRes.json();
-    starsEl.textContent = `${data.stargazers_count || 0}★`;
-    commitEl.textContent = new Date(data.pushed_at).toLocaleDateString();
-  }catch(_){ starsEl.textContent='offline'; commitEl.textContent='offline'; }
+    renderGitHub(data.stargazers_count, data.pushed_at);
+    try{
+      localStorage.setItem(GH_CACHE_KEY, JSON.stringify({
+        ts: Date.now(), stars: data.stargazers_count || 0, pushed_at: data.pushed_at
+      }));
+    }catch(_){ /* storage full/blocked */ }
+  }catch(_){
+    // On failure, fall back to any stale cache before giving up.
+    try{
+      const stale = JSON.parse(localStorage.getItem(GH_CACHE_KEY) || 'null');
+      if(stale){ renderGitHub(stale.stars, stale.pushed_at); return; }
+    }catch(_){}
+    starsEl.textContent='offline'; commitEl.textContent='offline';
+  }
 }
 hydrateGitHub();
 
