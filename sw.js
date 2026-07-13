@@ -1,9 +1,11 @@
-const CACHE = 'profile-card-v2';
+const CACHE = 'profile-card-v3';
 const ASSETS = [
   '/', '/profile-card/',
   '/profile-card/index.html',
   '/profile-card/profile-card.css',
   '/profile-card/index.js',
+  '/profile-card/favicon.svg',
+  '/profile-card/manifest.json',
   '/profile-card/projects.html',
   '/profile-card/contact.html',
   '/profile-card/blog.html',
@@ -16,8 +18,7 @@ const ASSETS = [
   '/profile-card/en/blog.html',
   '/profile-card/en/gallery.html',
   '/profile-card/en/skills.html',
-  '/profile-card/en/timeline.html',
-  '/profile-card/manifest.json'
+  '/profile-card/en/timeline.html'
 ];
 self.addEventListener('install', (event)=>{
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)).then(()=>self.skipWaiting()));
