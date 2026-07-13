@@ -1,9 +1,12 @@
+// Content arrays are the single source of truth in data/content.js.
+// (index.html loads this file with type="module", so this import is valid.)
+import { blogs, skillset, socials, milestones, achievements } from '/profile-card/data/content.js';
+
 (function(){
   const system = matchMedia('(prefers-color-scheme: light)').matches ? 'light':'dark';
   const pref = localStorage.getItem('theme') || system;
   document.documentElement.setAttribute('data-theme', pref);
 })();
-'use strict';
 
 // ===== Helpers =====
 const qs = (s)=>document.querySelector(s);
@@ -167,36 +170,6 @@ const files = new Map([
   ['timeline','/profile-card/#timeline'],
   ['skills','/profile-card/#skills'],
 ]);
-
-const blogs = [
-  {title:'TON Validators & Playbooks', tag:'Infra', date:'2025-03-01'},
-  {title:'DeFi Safety: Wallet Threat Model', tag:'Security', date:'2025-02-10'},
-  {title:'DAO Ops: Governance Automation', tag:'Research', date:'2025-01-12'},
-];
-const skillset = [
-  {name:'Security Engineering', val:92},
-  {name:'Node Ops / SRE', val:90},
-  {name:'JavaScript / Front-end', val:85},
-  {name:'DeFi / Research', val:88},
-];
-const socials = [
-  {name:'GitHub', url:'https://github.com/0xradikal'},
-  {name:'X (Twitter)', url:'https://x.com/0xradikal'},
-  {name:'Telegram', url:'https://t.me/Oxradikal'},
-  {name:'LinkedIn', url:'https://www.linkedin.com/in/0xradikal'},
-];
-const milestones = [
-  {year:'2021', text:'Launched CryptoPIA community & research lab'},
-  {year:'2022', text:'Scaled multi-chain node fleet with 99.9% uptime'},
-  {year:'2023', text:'Shipped wallet forensics automation toolkit'},
-  {year:'2024', text:'Security reviews for DeFi/TON products'},
-];
-const achievements = [
-  {title:'99.9% Uptime', desc:'Across validators & RPC nodes'},
-  {title:'$20K+ Rewards', desc:'Validator incentives across chains'},
-  {title:'6.5K+ Members', desc:'CryptoPIA research community'},
-  {title:'Bug Bounties', desc:'Security reports for infra teams'},
-];
 
 const commands = new Map([
   ['help',        {desc:'list available commands',         fn: ()=>printHTML(`<pre class="tbl">${helpTable()}</pre>`,'ok')}],

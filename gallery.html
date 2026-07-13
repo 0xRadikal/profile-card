@@ -41,27 +41,6 @@
     </section>
   </main>
 
-<script>
-  (function(){
-    const pics = [
-      'https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80'
-    ];
-    const grid = document.getElementById('gallery');
-    const lightbox = document.getElementById('lightbox');
-    const img = document.getElementById('lightboxImg');
-    const setTheme = ()=>{ const sys = matchMedia('(prefers-color-scheme: light)').matches ? 'light':'dark'; const pref = localStorage.getItem('theme')||sys; document.documentElement.setAttribute('data-theme', pref); };
-    setTheme();
-    pics.forEach(src=>{
-      const el = document.createElement('img');
-      el.src = src; el.alt = 'نمونه کار';
-      el.addEventListener('click', ()=>{ img.src = src; lightbox.classList.add('is-open'); });
-      grid.appendChild(el);
-    });
-    lightbox?.addEventListener('click', ()=>lightbox.classList.remove('is-open'));
-  })();
-</script>
+<script type="module" src="/profile-card/pages/gallery.js"></script>
 </body>
 </html>
