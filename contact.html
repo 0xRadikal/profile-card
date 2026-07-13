@@ -73,7 +73,11 @@
       const required = ['name','email','topic','message'];
       const missing = required.find(k=>!(data.get(k)||'').toString().trim());
       if(missing){ hint.textContent = 'همه فیلدها الزامی هستند'; hint.style.color='#f87171'; return; }
-      hint.textContent = 'پیام ارسال شد (mock) — پاسخ ظرف 24 ساعت.';
+      // Demo form only: there is no backend, so nothing is actually sent.
+      // To send for real, POST to a service (Formspree/EmailJS) here.
+      hint.innerHTML = 'این فرم نمایشی است و پیامی ارسال نمی‌شود. برای تماس واقعی: ' +
+        '<a href="https://t.me/Oxradikal" target="_blank" rel="noopener">تلگرام @Oxradikal</a> یا ' +
+        '<a href="mailto:radikal@example.com">radikal@example.com</a>';
       hint.style.color='var(--text)';
       form.reset();
     });

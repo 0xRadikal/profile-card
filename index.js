@@ -408,8 +408,13 @@ outEl?.addEventListener('submit', (e)=>{
   const email= (data.get('email')||'').toString().trim();
   const msg  = (data.get('msg')||'').toString().trim();
   if(!name || !email || !msg){ toast('fill all fields'); return; }
-  printText(`Contact sent: ${name} <${email}> — ${msg.slice(0,120)}`,'ok');
-  toast('message queued');
+  // NOTE: This is a demo form with no backend. It does NOT send anything.
+  // Be honest with the user instead of faking a "sent" state, and point them
+  // to real channels. To make it actually send, wire a service here
+  // (e.g. Formspree/EmailJS) via fetch() before showing success.
+  printText(`Demo form only — nothing was sent. Reach me directly:`,'info');
+  printHTML(`<a href='https://t.me/Oxradikal' target='_blank' rel='noopener'>Telegram @Oxradikal</a> • <a href='mailto:radikal@example.com'>radikal@example.com</a>`,'ok');
+  toast('demo form — use Telegram/email');
   form.reset();
 });
 
@@ -419,8 +424,11 @@ contactForm?.addEventListener('submit', (e)=>{
   const name = (data.get('name')||'').toString();
   const email = (data.get('email')||'').toString();
   const msg = (data.get('msg')||'').toString();
-  toast('پیام نمونه ثبت شد');
-  printText(`Contact form: ${name} • ${email} • ${msg.slice(0,90)}`,'ok');
+  if(!name || !email || !msg){ toast('همه فیلدها را پر کنید'); return; }
+  // Demo form: no backend, nothing is actually sent. Tell the user the truth.
+  toast('فرم نمایشی است — از تلگرام/ایمیل استفاده کنید');
+  printText('این فرم نمایشی است و پیامی ارسال نمی‌شود. برای تماس واقعی:','info');
+  printHTML(`<a href='https://t.me/Oxradikal' target='_blank' rel='noopener'>تلگرام @Oxradikal</a> • <a href='mailto:radikal@example.com'>radikal@example.com</a>`,'ok');
   contactForm.reset();
 });
 
