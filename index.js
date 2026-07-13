@@ -155,7 +155,11 @@ const saveHistory = (cmd)=>{ history.push(cmd); if(history.length>120) history.s
 
 // ===== Data =====
 const files = new Map([
-  ['resume','/profile-card/Radikal-CV.pdf'],
+  // NOTE: Radikal-CV.pdf does not exist in the repo. Until a real resume file
+  // is added, point `resume` to the GitHub profile so the link is never dead.
+  // To restore a PDF: drop Radikal-CV.pdf in the repo root and set the value
+  // back to '/profile-card/Radikal-CV.pdf'.
+  ['resume','https://github.com/0xradikal'],
   ['projects','/profile-card/#projects'],
   ['blog','/profile-card/#blog'],
   ['contact','/profile-card/#contact'],
