@@ -460,7 +460,7 @@ async function boot(){
     '> verifying RPC connections...',
     '> security daemon: OK',
     '> environment: stable',
-    'Radikal CLI v8.0 ready.',
+    'Radikal CLI v8.1.0 ready.',
     "Type 'help' to begin.",
     "New: blog, skills, social, timeline, achievements, fetch, theme, scroll, easter-egg"
   ];

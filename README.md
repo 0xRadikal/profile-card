@@ -36,14 +36,33 @@ It’s built to be:
 ```
 profile-card/
 │
-├── index.html              # Main HTML file
-├── profile-card.css        # Core styling (v8.0 — Cyber-Minimal)
-├── index.js                # JS logic (theme toggle + CLI)
+├── index.html              # Main HTML file (fa, dir=rtl)
+├── profile-card.css        # Core styling (v8.1 — Cyber-Minimal)
+├── index.js                # CLI logic (ES module; imports data/content.js)
 ├── favicon.svg             # Site icon (SVG)
-# (og:image now points to the GitHub avatar; no preview.png needed)
-├── projects.html           # Projects list (optional)
+├── manifest.json           # PWA manifest
+├── sw.js                   # Service worker
+│
+├── data/
+│   └── content.js          # SINGLE SOURCE OF TRUTH for blog/skills/timeline/gallery
+├── pages/                  # External page modules (no inline scripts)
+│   ├── theme.js            # Shared theme bootstrap (was duplicated inline)
+│   ├── blog.js  skills.js  timeline.js  gallery.js  contact.js  projects.js
+├── test/
+│   ├── smoke.mjs           # Headless Playwright smoke test (npm test)
+│   └── server.mjs          # Tiny static server (serves under /profile-card/)
+│
+├── blog.html  skills.html  timeline.html  gallery.html  contact.html  projects.html
+├── en/                     # English mirrors (dir=ltr) of every page
+│
+├── plans/                  # improve-skill handoff plans (audit trail)
 └── README.md               # Documentation (this file)
 ```
+
+> **Architecture note:** all page content is defined once in `data/content.js`
+> (locale-keyed for fa/en) and consumed by both the CLI (`index.js`) and the
+> page modules under `pages/`. There are **no inline `<script>` blocks** — every
+> page loads external ES modules under a strict CSP.
 
 ---
 
@@ -58,16 +77,22 @@ cd profile-card
 
 ### 2. Open in browser
 
-You can open `index.html` directly, or use a local dev server for cleaner routing:
+Because the site uses ES modules with absolute `/profile-card/` paths, serve it
+(don't open `index.html` from `file://`). A local server is included:
 
 ```bash
-npx serve
+npm install          # installs Playwright (dev-only, for tests)
+npm run serve        # serves http://127.0.0.1:3000/profile-card/
 ```
 
-Then open:
+### Running the tests
 
-```
-http://localhost:3000
+A headless smoke test guards the runtime contract (every DOM id the CLI needs),
+asserts zero console errors, and checks there are **no CSP violations** across
+all fa + en pages:
+
+```bash
+npm test             # → prints "SMOKE OK" on success
 ```
 
 ### Deployment (GitHub Pages)
@@ -225,7 +250,7 @@ Fallbacks are included for older Safari versions.
 
 * **No external dependencies.** All animations and effects are pure CSS or vanilla JS.
 * **Performance:** Designed to stay <30KB gzip total (HTML+CSS+JS).
-* **Security:** No inline scripts; safe for strict CSP setups.
+* **Security:** Zero inline scripts — all JS is external ES modules. Every page ships a strict `Content-Security-Policy` (`script-src 'self'`), verified by an automated smoke test.
 
 ---
 
@@ -288,7 +313,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
 * **سریع و سبک:** بدون فریم‌ورک و وابستگی خارجی.
 * **دسترس‌پذیر:** سازگار با WCAG و پشتیبانی کامل از کیبورد و صفحه‌خوان.
 * **قابل توسعه:** پشتیبانی از حالت روشن/تاریک، CLI داخلی و ساختار ماژولار.
-* **امن و سازگار:** بدون اسکریپت درون‌خطی، مناسب برای CSP سخت‌گیرانه.
+* **امن و سازگار:** بدون هیچ اسکریپت درون‌خطی (همهٔ JS به‌صورت ماژول خارجی)؛ هر صفحه یک `Content-Security-Policy` سخت‌گیرانه (`script-src 'self'`) دارد که با تست خودکار تأیید می‌شود.
 
 ---
 
@@ -474,7 +499,7 @@ document.documentElement.setAttribute('data-theme', pref);
 
 * بدون هیچ وابستگی خارجی.
 * طراحی‌شده برای حجم کمتر از ۳۰ کیلوبایت gzip.
-* سازگار با Content Security Policy.
+* دارای Content Security Policy سخت‌گیرانه روی همهٔ صفحات (بدون اسکریپت درون‌خطی).
 
 ---
 

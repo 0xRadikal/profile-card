@@ -18,10 +18,10 @@ your row when done.
 
 | Plan | Title | Priority | Effort | Depends on | Status |
 |------|-------|----------|--------|------------|--------|
-| 001  | Add a headless smoke test for the CLI runtime contract | P1 | M | — | TODO |
-| 002  | De-duplicate blog/skills/timeline data into one JSON source | P2 | L | 001 | TODO |
-| 003  | Ship a real Content-Security-Policy (remove inline scripts) | P2 | L | 001 | TODO |
-| 004  | Fix README claim that pages have "no inline scripts" | P3 | S | — | TODO |
+| 001  | Add a headless smoke test for the CLI runtime contract | P1 | M | — | DONE |
+| 002  | De-duplicate blog/skills/timeline data into one JSON source | P2 | L | 001 | DONE |
+| 003  | Ship a real Content-Security-Policy (remove inline scripts) | P2 | L | 001 | DONE |
+| 004  | Fix README claim that pages have "no inline scripts" | P3 | S | — | DONE |
 
 ## Dependency notes
 
