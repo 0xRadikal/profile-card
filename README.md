@@ -1,4 +1,4 @@
-# Radikal Profile Card (v7.3 — Cyber-Minimal)
+# Radikal Profile Card (v8.0 — Cyber-Minimal)
 
 **Author:** [Mohammad Shirvani (Radikal)](https://github.com/0xradikal)
 **Demo:** <p align="center">
@@ -37,7 +37,7 @@ It’s built to be:
 profile-card/
 │
 ├── index.html              # Main HTML file
-├── profile-card.css        # Core styling (v7.3 — Cyber-Minimal)
+├── profile-card.css        # Core styling (v8.0 — Cyber-Minimal)
 ├── index.js                # JS logic (theme toggle + CLI)
 ├── favicon.png             # Site icon
 ├── preview.png             # Social preview (for OpenGraph / Twitter)
@@ -267,7 +267,7 @@ furnished to do so, subject to the following conditions:
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
 ```
-# کارت پروفایل Radikal (نسخه 7.3 — Cyber-Minimal)
+# کارت پروفایل Radikal (نسخه 8.0 — Cyber-Minimal)
 
 **نویسنده:** [محمد شیروانی (Radikal)](https://github.com/0xradikal)
 **دمو:** 
@@ -298,7 +298,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
 profile-card/
 │
 ├── index.html              # فایل اصلی HTML
-├── profile-card.css        # استایل اصلی (v7.3 — Cyber-Minimal)
+├── profile-card.css        # استایل اصلی (v8.0 — Cyber-Minimal)
 ├── index.js                # منطق JavaScript (تغییر تم + CLI)
 ├── favicon.png             # آیکون سایت
 ├── preview.png             # تصویر پیش‌نمایش برای شبکه‌های اجتماعی
