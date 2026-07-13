@@ -73,7 +73,11 @@
       const required = ['name','email','topic','message'];
       const missing = required.find(k=>!(data.get(k)||'').toString().trim());
       if(missing){ hint.textContent = 'All fields are required'; hint.style.color='#f87171'; return; }
-      hint.textContent = 'Message sent (mock) — reply within 24 hours.';
+      // Demo form only: there is no backend, so nothing is actually sent.
+      // To send for real, POST to a service (Formspree/EmailJS) here.
+      hint.innerHTML = 'This is a demo form and does not send anything. Reach me directly: ' +
+        '<a href="https://t.me/Oxradikal" target="_blank" rel="noopener">Telegram @Oxradikal</a> or ' +
+        '<a href="mailto:radikal@example.com">radikal@example.com</a>';
       hint.style.color='var(--text)';
       form.reset();
     });
