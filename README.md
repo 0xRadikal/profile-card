@@ -39,8 +39,8 @@ profile-card/
 ├── index.html              # Main HTML file
 ├── profile-card.css        # Core styling (v8.0 — Cyber-Minimal)
 ├── index.js                # JS logic (theme toggle + CLI)
-├── favicon.png             # Site icon
-├── preview.png             # Social preview (for OpenGraph / Twitter)
+├── favicon.svg             # Site icon (SVG)
+# (og:image now points to the GitHub avatar; no preview.png needed)
 ├── projects.html           # Projects list (optional)
 └── README.md               # Documentation (this file)
 ```
@@ -300,8 +300,8 @@ profile-card/
 ├── index.html              # فایل اصلی HTML
 ├── profile-card.css        # استایل اصلی (v8.0 — Cyber-Minimal)
 ├── index.js                # منطق JavaScript (تغییر تم + CLI)
-├── favicon.png             # آیکون سایت
-├── preview.png             # تصویر پیش‌نمایش برای شبکه‌های اجتماعی
+├── favicon.svg             # آیکون سایت (SVG)
+# (og:image اکنون به آواتار گیت‌هاب اشاره می‌کند)
 ├── projects.html           # صفحه پروژه‌ها (اختیاری)
 └── README.md               # مستندات پروژه
 ```
