@@ -163,7 +163,9 @@ html[data-theme="light"] .bio-short{color:#1e293b}
 .search__input{width:100%; padding:12px; border-radius:12px; border:1px solid color-mix(in oklab,var(--text) 14%, transparent); background:color-mix(in oklab,var(--panel) 70%, transparent); color:var(--text); font-family:"JetBrains Mono","Fira Code",ui-monospace}
 .table{width:100%; border-collapse:collapse; margin-top:10px}
 .table th,.table td{padding:10px; border-bottom:1px solid color-mix(in oklab,var(--text) 12%, transparent)}
-.pill{display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px; background:linear-gradient(90deg,var(--brandA),var(--brandB)); color:white; font-size:.86rem}
+/* NOTE: the active .pill definition lives later in this file (see "Multi-section
+   layout"). The earlier duplicate here was fully overridden dead code and has
+   been removed to keep a single source of truth. */
 .lightbox{position:fixed; inset:0; background:rgba(0,0,0,.6); display:none; align-items:center; justify-content:center; padding:20px; z-index:20}
 .lightbox.is-open{display:flex}
 .lightbox img{max-width:min(90vw,960px); max-height:80vh; border-radius:16px; box-shadow:0 16px 32px rgba(0,0,0,.4)}
@@ -198,14 +200,12 @@ html[data-theme="light"] .bio-short{color:#1e293b}
 .led--net{ background:#06b6d4; animation:blink 2s infinite .5s }
 .led--sec{ background:#7c3aed; animation:blink 2.8s infinite .3s }
 
-/* جایگزین این‌ها شود */
+/* margin-inline-start:auto pushes the action buttons to the logical end of the
+   header; this is direction-aware and lays out correctly in both LTR and RTL
+   (verified against index.html dir="rtl"), so no extra RTL override is needed. */
 .shell__actions{ margin-inline-start:auto; display:flex; gap:8px }
-/* و این RTL-fix را حذف کن یا کامنت کن */
-/* html[dir="rtl"] .shell__actions { margin-inline-start:0; margin-inline-end:auto; } */
 
 :focus-visible { outline:2px solid color-mix(in oklab, var(--brandB) 70%, #000); outline-offset:2px; }
-.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;}
-
 
 
 
@@ -344,25 +344,6 @@ html[data-theme="light"] .info{ color:#1e3a8a }
                                     color-mix(in oklab, var(--panel) 10%, transparent));
 }
 .help__head{ grid-column:1 / -1; display:flex; justify-content:space-between;
-  font-weight:700; color:color-mix(in oklab, var(--text) 86%, transparent);
-  padding-bottom:6px; border-bottom:1px dashed color-mix(in oklab, var(--text) 14%, transparent);
-  margin-bottom:6px;
-}
-.help__row{ display:contents; }
-.help code{
-  padding:2px 8px; border-radius:8px; border:1px solid color-mix(in oklab, var(--text) 14%, transparent);
-  background:color-mix(in oklab, var(--panel) 70%, transparent);
-}
-.help span{ color:var(--muted); align-self:center; }
-.help{
-  display:grid; grid-template-columns:auto 1fr; gap:8px 18px;
-  padding:12px; border:1px solid color-mix(in oklab, var(--text) 14%, transparent);
-  border-radius:10px;
-  background:linear-gradient(180deg, color-mix(in oklab, var(--panel) 70%, transparent),
-                                    color-mix(in oklab, var(--panel) 10%, transparent));
-}
-.help__head{
-  grid-column:1 / -1; display:flex; justify-content:space-between;
   font-weight:700; color:color-mix(in oklab, var(--text) 86%, transparent);
   padding-bottom:6px; border-bottom:1px dashed color-mix(in oklab, var(--text) 14%, transparent);
   margin-bottom:6px;
