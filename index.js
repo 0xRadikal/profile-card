@@ -326,7 +326,11 @@ async function fetchCommand(url){
     return;
   }
   const sameOrigin = parsed.origin === location.origin;
-  const allowlisted = ['api.github.com','github.com'].some(host=>parsed.hostname.endsWith(host));
+  // Exact host or a real sub-domain only. Plain endsWith(host) would wrongly
+  // accept a look-alike like "fake-github.com" (ends with "github.com").
+  const allowlisted = ['api.github.com','github.com'].some(host =>
+    parsed.hostname === host || parsed.hostname.endsWith('.' + host)
+  );
   if(!sameOrigin && !allowlisted){
     printText('Cross-origin fetch blocked. Try GitHub APIs or same-origin paths.','err');
     return;
@@ -337,7 +341,12 @@ async function fetchCommand(url){
     if(!res.ok) throw new Error(`${res.status} ${res.statusText}`);
     const json = await res.json();
     const pretty = JSON.stringify(json,null,2).slice(0,800);
-    printHTML(`<pre class='tbl'>${pretty}</pre>`,'ok');
+    // Use textContent (via a real <pre>), NOT innerHTML: a remote JSON payload
+    // could contain "</pre><img src=x onerror=...>" and execute as XSS.
+    const pre = document.createElement('pre');
+    pre.className = 'tbl';
+    pre.textContent = pretty;
+    if(outEl){ const d=document.createElement('div'); d.className='ok'; d.appendChild(pre); outEl.appendChild(d); prune(); maybeScrollEnd(); }
   }catch(err){
     printText(`fetch failed: ${err.message}`,'err');
   }
