@@ -35,33 +35,6 @@
     </section>
   </main>
 
-<script>
-  (function(){
-    const skills = [
-      {name:'Security', level:0.92},
-      {name:'NodeOps', level:0.9},
-      {name:'JavaScript', level:0.85},
-      {name:'DevRel', level:0.72},
-      {name:'Research', level:0.88},
-    ];
-    const grid = document.getElementById('skillGrid');
-    const chart = document.getElementById('chart');
-    const setTheme = ()=>{ const sys = matchMedia('(prefers-color-scheme: light)').matches ? 'light':'dark'; const pref = localStorage.getItem('theme')||sys; document.documentElement.setAttribute('data-theme', pref); };
-    setTheme();
-    skills.forEach(s=>{
-      const card = document.createElement('article');
-      card.className='card-soft';
-      card.innerHTML = `<h3>${s.name}</h3><div class="progress" aria-label="${s.name}"><span class="progress__bar" style="--w:${s.level*100}%"></span></div><p class="muted mono">${Math.round(s.level*100)}%</p>`;
-      grid.appendChild(card);
-    });
-    skills.forEach(s=>{
-      const bar = document.createElement('div');
-      bar.className='chart__bar';
-      bar.style.setProperty('--v', s.level);
-      bar.innerHTML = `<span></span><label>${s.name}</label>`;
-      chart.appendChild(bar);
-    });
-  })();
-</script>
+<script type="module" src="/profile-card/pages/skills.js"></script>
 </body>
 </html>

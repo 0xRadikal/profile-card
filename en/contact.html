@@ -60,28 +60,6 @@
     </section>
   </main>
 
-<script>
-  (function(){
-    const form = document.getElementById('contactForm');
-    const hint = document.getElementById('formHint');
-    const setTheme = ()=>{ const sys = matchMedia('(prefers-color-scheme: light)').matches ? 'light':'dark'; const pref = localStorage.getItem('theme') || sys; document.documentElement.setAttribute('data-theme', pref); };
-    setTheme();
-    form?.addEventListener('submit', (e)=>{
-      e.preventDefault();
-      hint.textContent = '';
-      const data = new FormData(form);
-      const required = ['name','email','topic','message'];
-      const missing = required.find(k=>!(data.get(k)||'').toString().trim());
-      if(missing){ hint.textContent = 'All fields are required'; hint.style.color='#f87171'; return; }
-      // Demo form only: there is no backend, so nothing is actually sent.
-      // To send for real, POST to a service (Formspree/EmailJS) here.
-      hint.innerHTML = 'This is a demo form and does not send anything. Reach me directly: ' +
-        '<a href="https://t.me/Oxradikal" target="_blank" rel="noopener">Telegram @Oxradikal</a> or ' +
-        '<a href="mailto:radikal@example.com">radikal@example.com</a>';
-      hint.style.color='var(--text)';
-      form.reset();
-    });
-  })();
-</script>
+<script type="module" src="/profile-card/pages/contact.js"></script>
 </body>
 </html>

@@ -36,19 +36,6 @@
     </section>
   </main>
 
-<script>
-  (function(){
-    const items = [
-      {year:'2021', title:'CryptoPIA', desc:'ایجاد کامیونیتی و اتاق فکر DeFi'},
-      {year:'2022', title:'NodeOps', desc:'گسترش ناوگان ولیدیتورها و مانیتورینگ'},
-      {year:'2023', title:'Security Lab', desc:'توسعه ابزار تحلیل تراکنش و ریسک'},
-      {year:'2024', title:'TON Research', desc:'تمرکز بر تون و زیرساخت‌های مرتبط'},
-    ];
-    const wrap = document.getElementById('timeline');
-    const setTheme = ()=>{ const sys = matchMedia('(prefers-color-scheme: light)').matches ? 'light':'dark'; const pref = localStorage.getItem('theme')||sys; document.documentElement.setAttribute('data-theme', pref); };
-    setTheme();
-    wrap.innerHTML = items.map(i=>`<div class="timeline__item"><strong>${i.year}</strong> — <span>${i.title}</span><div class="muted">${i.desc}</div></div>`).join('');
-  })();
-</script>
+<script type="module" src="/profile-card/pages/timeline.js"></script>
 </body>
 </html>
