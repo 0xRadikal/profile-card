@@ -1,11 +1,19 @@
 # Radikal Profile Card (v8.2 — Cyber-Minimal, redesigned)
 
-**Author:** [Mohammad Shirvani (Radikal)](https://github.com/0xradikal)
-**Demo:** <p align="center">
-  <img src="./Demo.jpg" alt="Profile Card Preview" width="720">
+**Author:** [Mohammad Shirvani (Radikal)](https://github.com/0xRadikal) &nbsp;·&nbsp; **License:** MIT
+
+<p align="center">
+  <a href="https://0xradikal.github.io/profile-card/"><img src="https://img.shields.io/badge/🚀_Live_Demo-0xradikal.github.io-06b6d4?style=for-the-badge&logo=github&logoColor=white" alt="Live Demo"></a>
+  <a href="https://github.com/0xRadikal/profile-card"><img src="https://img.shields.io/badge/Source-profile--card-181717?style=for-the-badge&logo=github&logoColor=white" alt="Repository"></a>
+  <a href="https://github.com/0xRadikal/profile-card/releases/tag/v8.2.0"><img src="https://img.shields.io/badge/Release-v8.2.0-16a34a?style=for-the-badge&logo=github&logoColor=white" alt="Release"></a>
 </p>
 
-**License:** MIT
+> 🔗 **Live demo / online preview:** **https://0xradikal.github.io/profile-card/**
+> 📦 **Repository:** https://github.com/0xRadikal/profile-card
+
+<p align="center">
+  <a href="https://0xradikal.github.io/profile-card/"><img src="./Demo.jpg" alt="Profile Card Preview — click to open live demo" width="720"></a>
+</p>
 
 ---
 
@@ -312,13 +320,14 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
 ```
 # کارت پروفایل Radikal (نسخه 8.0 — Cyber-Minimal)
 
-**نویسنده:** [محمد شیروانی (Radikal)](https://github.com/0xradikal)
-**دمو:** 
-<p align="center">
-  <img src="./Demo.jpg" alt="Profile Card Preview" width="720">
-</p>
+**نویسنده:** [محمد شیروانی (Radikal)](https://github.com/0xRadikal) &nbsp;·&nbsp; **مجوز:** MIT
 
-**مجوز:** MIT
+> 🔗 **دموی آنلاین / پیش‌نمایش زنده:** **https://0xradikal.github.io/profile-card/**
+> 📦 **مخزن:** https://github.com/0xRadikal/profile-card
+
+<p align="center">
+  <a href="https://0xradikal.github.io/profile-card/"><img src="./Demo.jpg" alt="Profile Card Preview — برای مشاهدهٔ دمو کلیک کنید" width="720"></a>
+</p>
 
 ---
 
