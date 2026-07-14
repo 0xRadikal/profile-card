@@ -1,10 +1,19 @@
-const CACHE = 'profile-card-v4';
+const CACHE = 'profile-card-v6';
 const ASSETS = [
   '/', '/profile-card/',
   '/profile-card/index.html',
   '/profile-card/profile-card.css',
   '/profile-card/index.js',
   '/profile-card/data/content.js',
+  // Self-hosted fonts (Plan 005)
+  '/profile-card/assets/fonts/vazirmatn-arabic-400-normal.woff2',
+  '/profile-card/assets/fonts/vazirmatn-arabic-500-normal.woff2',
+  '/profile-card/assets/fonts/vazirmatn-arabic-700-normal.woff2',
+  '/profile-card/assets/fonts/vazirmatn-latin-400-normal.woff2',
+  '/profile-card/assets/fonts/vazirmatn-latin-500-normal.woff2',
+  '/profile-card/assets/fonts/vazirmatn-latin-700-normal.woff2',
+  '/profile-card/assets/fonts/jetbrains-mono-latin-400-normal.woff2',
+  '/profile-card/assets/fonts/jetbrains-mono-latin-600-normal.woff2',
   '/profile-card/pages/theme.js',
   '/profile-card/pages/blog.js',
   '/profile-card/pages/skills.js',

@@ -51,15 +51,43 @@ themeBtn?.addEventListener('click', ()=>{
   setTimeout(()=>themeBtn.classList.remove('pulse'), 260);
 });
 
-// ===== 3D tilt =====
-if(cardEl){
+// ===== 3D tilt (RAF + lerp smoothed; disabled under reduced-motion) =====
+if(cardEl && !matchMedia('(prefers-reduced-motion: reduce)').matches){
+  const MAX = 6;              // max tilt in degrees
+  const EASE = 0.12;          // lerp factor toward target per frame
+  const target = {x:0, y:0};  // desired rotation (deg)
+  const cur = {x:0, y:0};     // current rotation (deg)
+  let raf = 0, active = false;
+
+  const loop = ()=>{
+    cur.x += (target.x - cur.x) * EASE;
+    cur.y += (target.y - cur.y) * EASE;
+    cardEl.style.transform = `rotateY(${cur.x.toFixed(3)}deg) rotateX(${cur.y.toFixed(3)}deg)`;
+    // settle: once close enough to a resting target, stop the loop
+    if(Math.abs(target.x - cur.x) < 0.01 && Math.abs(target.y - cur.y) < 0.01){
+      cur.x = target.x; cur.y = target.y;
+      cardEl.style.transform = target.x === 0 && target.y === 0
+        ? '' : `rotateY(${cur.x}deg) rotateX(${cur.y}deg)`;
+      raf = 0; active = false;
+      return;
+    }
+    raf = requestAnimationFrame(loop);
+  };
+  const ensureLoop = ()=>{ if(!active){ active = true; raf = requestAnimationFrame(loop); } };
+
   cardEl.addEventListener('pointermove', (e)=>{
     const rect = cardEl.getBoundingClientRect();
     const dx = (e.clientX - rect.left - rect.width/2)/rect.width;
     const dy = (e.clientY - rect.top - rect.height/2)/rect.height;
-    cardEl.style.transform = `rotateY(${dx*6}deg) rotateX(${dy*-6}deg)`;
+    target.x = dx * MAX;
+    target.y = dy * -MAX;
+    ensureLoop();
+  }, {passive:true});
+
+  cardEl.addEventListener('pointerleave', ()=>{
+    target.x = 0; target.y = 0;   // loop eases back to rest, then self-cancels
+    ensureLoop();
   });
-  cardEl.addEventListener('pointerleave', ()=>{ cardEl.style.transform=''; });
 }
 
 // ===== Particles =====
@@ -460,7 +488,7 @@ async function boot(){
     '> verifying RPC connections...',
     '> security daemon: OK',
     '> environment: stable',
-    'Radikal CLI v8.1.0 ready.',
+    'Radikal CLI v8.2.0 ready.',
     "Type 'help' to begin.",
     "New: blog, skills, social, timeline, achievements, fetch, theme, scroll, easter-egg"
   ];

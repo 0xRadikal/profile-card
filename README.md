@@ -1,4 +1,4 @@
-# Radikal Profile Card (v8.0 — Cyber-Minimal)
+# Radikal Profile Card (v8.2 — Cyber-Minimal, redesigned)
 
 **Author:** [Mohammad Shirvani (Radikal)](https://github.com/0xradikal)
 **Demo:** <p align="center">
@@ -21,6 +21,24 @@ It’s built to be:
 * **Interactive:** Includes a custom command‑line interface (CLI) for fun user interaction.
 * **Installable:** PWA + offline cache via Service Worker.
 
+### What’s new in v8.2 (frontend / UI-UX / motion redesign)
+
+A visual-layer-only redesign (no runtime logic, security, or data changed):
+
+* **Design tokens + self-hosted fonts:** full token system (color/space/type/
+  radius/elevation); Vazirmatn (fa/en) + JetBrains Mono (code) shipped locally
+  as `woff2` with `unicode-range` — no font CDN, tighter CSP.
+* **True RTL/LTR:** directional layout migrated to CSS logical properties so
+  Persian (RTL) and English (LTR) both render correctly.
+* **Calmer, accessible motion:** RAF+lerp card tilt, softened decorative
+  animation, cross-document View Transitions — all respecting
+  `prefers-reduced-motion`.
+* **Cohesive, AA-compliant palette:** retired the old green-cyan/purple relic
+  colors to the accent tokens; fixed the `Radikal.eth` link contrast (was
+  1.84:1 on light, now ≥5:1).
+* **PWA refresh:** Service Worker cache bumped so installed users get the new
+  look; precache list verified complete.
+
 ### What’s new in v8.0
 
 * Extended CLI (blog, skills, social, contact form, timeline, achievements, fetch, theme, easter‑egg).
@@ -37,7 +55,7 @@ It’s built to be:
 profile-card/
 │
 ├── index.html              # Main HTML file (fa, dir=rtl)
-├── profile-card.css        # Core styling (v8.1 — Cyber-Minimal)
+├── profile-card.css        # Core styling (v8.2 — redesigned, tokenized)
 ├── index.js                # CLI logic (ES module; imports data/content.js)
 ├── favicon.svg             # Site icon (SVG)
 ├── manifest.json           # PWA manifest
@@ -323,7 +341,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
 profile-card/
 │
 ├── index.html              # فایل اصلی HTML
-├── profile-card.css        # استایل اصلی (v8.0 — Cyber-Minimal)
+├── profile-card.css        # استایل اصلی (v8.2 — بازطراحی‌شده)
 ├── index.js                # منطق JavaScript (تغییر تم + CLI)
 ├── favicon.svg             # آیکون سایت (SVG)
 # (og:image اکنون به آواتار گیت‌هاب اشاره می‌کند)

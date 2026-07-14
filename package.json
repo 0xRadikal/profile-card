@@ -1,6 +1,6 @@
 {
   "name": "profile-card",
-  "version": "8.1.0",
+  "version": "8.2.0",
   "description": "Radikal — interactive bilingual (fa/en) Web3 profile card with a CLI terminal, PWA, and zero-framework static build.",
   "type": "module",
   "main": "index.js",

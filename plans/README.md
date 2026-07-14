@@ -22,6 +22,22 @@ your row when done.
 | 002  | De-duplicate blog/skills/timeline data into one JSON source | P2 | L | 001 | DONE |
 | 003  | Ship a real Content-Security-Policy (remove inline scripts) | P2 | L | 001 | DONE |
 | 004  | Fix README claim that pages have "no inline scripts" | P3 | S | — | DONE |
+| 005  | Design token system + Persian/English typography (self-host Vazirmatn) | P1 | L | — | DONE |
+| 006  | Full RTL/LTR audit + CSS logical properties | P1 | M | 005 | DONE |
+| 007  | Motion & interaction system (RAF+lerp tilt, orchestration, View Transitions PE) | P2 | M | 005 | DONE |
+| 008  | Page-by-page visual implementation (index/projects/blog/gallery/skills/timeline/contact, fa+en) | P1 | L | 005,006,007 | DONE |
+| 009  | Final PWA sync + full multi-theme/locale/viewport verification | P1 | M | 008 | DONE |
+
+## Redesign track (005–009)
+
+A second, self-contained track added 2026-07-13 on branch `redesign/ui-ux`
+(off `master`/v8.1.0). Scope is **strictly the frontend visual/UX layer**:
+typography, color tokens, RTL/LTR correctness, motion, responsive polish and
+accessibility. It does NOT touch runtime logic, security posture, the data
+model, or the 15 runtime CLI selectors. Each phase verifies with `npm test`
+(`SMOKE OK`, zero CSP violations), 8 Playwright screenshots
+(fa/en × dark/light × mobile/desktop under `test/screenshots/<phase>/`), a
+`prefers-reduced-motion` check and a WCAG AA contrast pass.
 
 ## Dependency notes
 
