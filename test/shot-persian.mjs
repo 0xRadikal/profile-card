@@ -1,0 +1,15 @@
+import { chromium } from 'playwright';
+import { startServer } from './server.mjs';
+const { server, port } = await startServer(0);
+const b = await chromium.launch();
+const ctx = await b.newContext({ viewport: { width: 1000, height: 1100 }, colorScheme: 'dark' });
+const p = await ctx.newPage();
+await p.goto(`http://127.0.0.1:${port}/profile-card/`, { waitUntil: 'domcontentloaded' });
+await p.waitForSelector('#input', { timeout: 10000 });
+await p.waitForTimeout(700);
+await p.evaluate(() => document.querySelector('#projects')?.scrollIntoView());
+await p.waitForTimeout(400);
+await p.screenshot({ path: new URL('./screenshots/005/fa-projects-persian.png', import.meta.url).pathname, animations: 'disabled' });
+await b.close();
+server.close();
+console.log('done');

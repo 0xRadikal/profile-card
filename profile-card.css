@@ -1,0 +1,493 @@
+/* =========================================
+  FILE: profile-card.css (v8.2.0 — Terminal / Observability)
+  Design tokens + self-hosted typography (Plan 005).
+  - Persian/Latin UI face: Vazirmatn (self-hosted, OFL, assets/fonts/)
+  - Code / CLI / data face: JetBrains Mono (self-hosted, OFL)
+========================================= */
+
+/* ---------- Self-hosted fonts (Plan 005) --------------------------------- */
+/* Vazirmatn — arabic subset carries the Persian/Arabic glyphs, latin subset
+   the Latin ones. unicode-range lets the browser fetch only what a page needs. */
+@font-face{
+  font-family:"Vazirmatn"; font-style:normal; font-weight:400; font-display:swap;
+  src:url("/profile-card/assets/fonts/vazirmatn-arabic-400-normal.woff2") format("woff2");
+  unicode-range:U+0600-06FF,U+0750-077F,U+08A0-08FF,U+FB50-FDFF,U+FE70-FEFF,U+200C-200D,U+2010-2011;
+}
+@font-face{
+  font-family:"Vazirmatn"; font-style:normal; font-weight:500; font-display:swap;
+  src:url("/profile-card/assets/fonts/vazirmatn-arabic-500-normal.woff2") format("woff2");
+  unicode-range:U+0600-06FF,U+0750-077F,U+08A0-08FF,U+FB50-FDFF,U+FE70-FEFF,U+200C-200D,U+2010-2011;
+}
+@font-face{
+  font-family:"Vazirmatn"; font-style:normal; font-weight:700; font-display:swap;
+  src:url("/profile-card/assets/fonts/vazirmatn-arabic-700-normal.woff2") format("woff2");
+  unicode-range:U+0600-06FF,U+0750-077F,U+08A0-08FF,U+FB50-FDFF,U+FE70-FEFF,U+200C-200D,U+2010-2011;
+}
+@font-face{
+  font-family:"Vazirmatn"; font-style:normal; font-weight:400; font-display:swap;
+  src:url("/profile-card/assets/fonts/vazirmatn-latin-400-normal.woff2") format("woff2");
+}
+@font-face{
+  font-family:"Vazirmatn"; font-style:normal; font-weight:500; font-display:swap;
+  src:url("/profile-card/assets/fonts/vazirmatn-latin-500-normal.woff2") format("woff2");
+}
+@font-face{
+  font-family:"Vazirmatn"; font-style:normal; font-weight:700; font-display:swap;
+  src:url("/profile-card/assets/fonts/vazirmatn-latin-700-normal.woff2") format("woff2");
+}
+@font-face{
+  font-family:"JetBrains Mono"; font-style:normal; font-weight:400; font-display:swap;
+  src:url("/profile-card/assets/fonts/jetbrains-mono-latin-400-normal.woff2") format("woff2");
+}
+@font-face{
+  font-family:"JetBrains Mono"; font-style:normal; font-weight:600; font-display:swap;
+  src:url("/profile-card/assets/fonts/jetbrains-mono-latin-600-normal.woff2") format("woff2");
+}
+
+:root{
+  /* ---- Type tokens ---- */
+  --font-ui:"Vazirmatn", system-ui, "Segoe UI", Tahoma, sans-serif;
+  /* JetBrains Mono has no Persian/Arabic glyphs; listing Vazirmatn next in the
+     stack means any Persian text that lands inside a .mono context (e.g. the
+     CLI contact form labels) renders in Vazirmatn, not an ugly system fallback,
+     while Latin/code stays monospace. */
+  --font-mono:"JetBrains Mono", ui-monospace, "Fira Code", Menlo, Consolas, "Vazirmatn", monospace;
+  /* fluid type scale */
+  --fs-display:clamp(1.5rem, 1.1rem + 2.2vw, 2.1rem);
+  --fs-title:clamp(1.2rem, 1rem + 1.1vw, 1.55rem);
+  --fs-body:1rem;
+  --fs-ui:.92rem;
+  --fs-small:.82rem;
+  --lh-tight:1.25;
+  --lh-body:1.9;        /* Persian reads better with generous leading */
+  --lh-ui:1.5;
+
+  /* ---- Spacing scale (4px base ramp) ---- */
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px;
+  --space-5:24px; --space-6:32px; --space-7:48px; --space-8:64px;
+
+  /* ---- Radius scale ---- */
+  --r-1:8px; --r-2:12px; --r-3:16px; --r-4:22px; --r-pill:999px;
+
+  /* ---- Color system: terminal / observability (dark default) ---- */
+  --bg:#0b0f14;             /* deep ink, slightly cool */
+  --surface:#121822;        /* panel */
+  --surface-2:#18202c;      /* elevated */
+  --border:#25303d;         /* hairline */
+  --text:#e6edf3;           /* primary text (AA on --bg) */
+  --muted:#9fb0c0;          /* secondary text (AA on --bg) */
+  --accent:#3fd68b;         /* signal green — the terminal "prompt / OK" hue */
+  --accent-2:#5cc8ff;       /* telemetry cyan-blue, used sparingly */
+  --accent-soft:color-mix(in oklab, var(--accent) 16%, transparent);
+  --success:#3fd68b;
+  --warning:#f2b544;
+  --danger:#ff6b6b;
+  --on-accent:#04140b;      /* text over accent fills */
+  --link:var(--accent-2);   /* AA-safe hyperlink / .ens ink (10.2:1 on dark bg) */
+
+  /* ---- Elevation ---- */
+  --shadow:0 10px 30px rgba(0,0,0,.35);
+  --shadow-soft:0 6px 18px rgba(0,0,0,.22);
+
+  /* ---- Legacy aliases (mapped onto new tokens so pre-006/008 components
+       keep working without a flash of broken styling). Retired gradually. --- */
+  --panel:var(--surface);
+  --glass:color-mix(in oklab, var(--surface) 82%, transparent);
+  --blur:blur(10px);
+  --brandA:var(--accent);
+  --brandB:var(--accent-2);
+  --brandC:var(--accent);
+  --ring:conic-gradient(from 0deg, var(--accent), var(--accent-2), var(--accent), var(--accent));
+
+  --stagger:110ms;
+
+  /* ---- Motion (Plan 007) ---- */
+  --ease:cubic-bezier(.22,.61,.36,1);   /* soft ease-out for UI transitions */
+  --dur-1:140ms;   /* micro: hover/focus feedback */
+  --dur-2:240ms;   /* small: chips, toggles, toast */
+  --dur-3:420ms;   /* medium: view transitions, entrances */
+}
+
+html[data-theme="light"]{
+  --bg:#f3f6fa;
+  --surface:#ffffff;
+  --surface-2:#eef2f7;
+  --border:#d6dee8;
+  --text:#0e1b26;           /* AA on light bg */
+  --muted:#4a5866;          /* AA on light bg */
+  --accent:#0f9d63;         /* darker green for AA contrast on light */
+  --accent-2:#0f7fbf;
+  --accent-soft:color-mix(in oklab, var(--accent) 14%, transparent);
+  --success:#0f9d63;
+  --warning:#b7791f;
+  --danger:#d64545;
+  --on-accent:#ffffff;
+  --link:#0d6ea8;           /* AA-safe hyperlink / .ens ink (5.1:1 on light bg) */
+  --shadow:0 10px 26px rgba(16,24,40,.10);
+  --shadow-soft:0 6px 16px rgba(16,24,40,.07);
+  --panel:var(--surface);
+  --glass:color-mix(in oklab, var(--surface) 88%, transparent);
+}
+@media (prefers-color-scheme: light){ html:not([data-theme]){
+  --bg:#f3f6fa; --surface:#ffffff; --surface-2:#eef2f7; --border:#d6dee8;
+  --text:#0e1b26; --muted:#4a5866; --accent:#0f9d63; --accent-2:#0f7fbf;
+  --success:#0f9d63; --warning:#b7791f; --danger:#d64545; --on-accent:#ffffff;
+  --link:#0d6ea8;
+  --shadow:0 10px 26px rgba(16,24,40,.10); --panel:var(--surface);
+  --glass:color-mix(in oklab, var(--surface) 88%, transparent);
+}}
+
+html,body{height:100%}
+body{margin:0; color:var(--text); font-family:var(--font-ui); font-size:var(--fs-body); line-height:var(--lh-body); background:var(--bg); overflow-x:hidden; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility}
+.mono{font-family:var(--font-mono)}
+.skip{position:absolute; top:-100px; inset-inline-start:12px; padding:8px 12px; background:var(--accent-2); color:var(--on-accent); border-radius:10px; z-index:9; text-decoration:none; box-shadow:var(--shadow-soft)}
+.skip:focus-visible{top:12px}
+.particles{position:fixed; inset:0; pointer-events:none; opacity:.6}
+body{cursor:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><circle cx="12" cy="12" r="5" fill="none" stroke="%233fd68b" stroke-width="1.5" opacity="0.85"/></svg>') 12 12, auto}
+
+/* BG + HUD */
+.bg{position:fixed; inset:0; pointer-events:none}
+.orb{position:absolute; border-radius:50%; filter:blur(30px); opacity:.10; mix-blend-mode:screen}
+.orb-1{width:28vmax;height:28vmax;top:-10vmax;left:-12vmax;background:radial-gradient(circle,var(--brandA),transparent 65%);animation:float 26s ease-in-out infinite}
+.orb-2{width:32vmax;height:32vmax;top:-6vmax;right:-14vmax;background:radial-gradient(circle,var(--brandB),transparent 65%);animation:float 32s ease-in-out infinite reverse}
+.orb-3{width:36vmax;height:36vmax;bottom:-16vmax;left:12vmax;background:radial-gradient(circle,var(--brandC),transparent 65%);animation:float 36s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.hud{position:absolute; inset:0}
+.hud-corner{position:absolute; width:28px; height:28px; border:2px solid rgba(255,255,255,.12)}
+html[data-theme="light"] .hud-corner{border-color:rgba(0,0,0,.08)}
+.hud-corner.tl{top:12px; left:12px; border-right:none; border-bottom:none}
+.hud-corner.tr{top:12px; right:12px; border-left:none; border-bottom:none}
+.hud-corner.bl{bottom:12px; left:12px; border-right:none; border-top:none}
+.hud-corner.br{bottom:12px; right:12px; border-left:none; border-top:none}
+.hud .hud-grid{position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px); background-size:80px 80px; mask-image:radial-gradient(closest-side, rgba(0,0,0,.9), transparent 70%)}
+.hud .hud-grid.fine{background-size:40px 40px; opacity:.6}
+.hud .scanline{position:absolute; inset:0; background:linear-gradient(transparent 97%, rgba(255,255,255,.04) 99%, transparent); background-size:100% 4px; animation:scan 14s linear infinite}
+@media (min-resolution:2dppx){ .hud .scanline{ background-size:100% 6px } }
+.hud:hover .scanline{ animation-play-state: paused }
+@keyframes scan{to{background-position:0 100%}}
+
+/* Layout */
+.wrap{position:relative; display:grid; place-items:center; min-height:100dvh; padding:clamp(16px,4vw,28px)}
+
+/* Card */
+.card{position:relative; width:min(960px,96vw); background:linear-gradient(180deg, var(--panel), color-mix(in oklab, var(--panel) 64%, transparent)); backdrop-filter: blur(6px) saturate(130%); border:1px solid color-mix(in oklab, var(--text) 10%, transparent); border-radius:22px; padding:clamp(20px,3.2vw,28px); overflow:hidden; box-shadow:var(--shadow); transform:translateY(10px) scale(.985); animation:rise .8s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes rise{to{transform:translateY(0) scale(1)}}
+.card__glow{position:absolute; inset:-2px; border-radius:inherit; background:var(--ring); filter:blur(10px); opacity:.12; animation:spin 22s linear infinite}
+.card__shine{position:absolute; inset:0; background:radial-gradient(circle at 20% 20%, rgba(255,255,255,.08), transparent 40%); mix-blend-mode:screen; pointer-events:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Stagger (global via :root variable) */
+:root{ --stagger: 110ms }
+.stage{opacity:0; transform:translateY(14px); animation:stageIn .65s cubic-bezier(.2,.8,.2,1) forwards}
+.card > .stage:nth-of-type(1){animation-delay: calc(var(--stagger) * 0)}
+.card > .stage:nth-of-type(2){animation-delay: calc(var(--stagger) * 1)}
+.card > .stage:nth-of-type(3){animation-delay: calc(var(--stagger) * 2)}
+.card > .stage:nth-of-type(4){animation-delay: calc(var(--stagger) * 3)}
+.card > .stage:nth-of-type(5){animation-delay: calc(var(--stagger) * 4)}
+@keyframes stageIn{to{opacity:1; transform:translateY(0)}}
+
+/* Header */
+.card__header{display:grid; grid-template-columns:160px 1fr; gap:clamp(14px,2vw,22px); align-items:center}
+.theme{justify-self:end; grid-column:2 / 3; min-width:48px; min-height:40px; display:inline-grid; place-items:center; background:transparent; border:1px solid color-mix(in oklab, var(--text) 12%, transparent); border-radius:12px; padding:6px 10px; cursor:pointer; color:var(--text); opacity:.9; transition:opacity .25s, transform .25s}
+.theme:hover{opacity:1; transform:translateY(-2px)}
+.theme .sun,.theme .moon{width:18px; height:18px; display:block; transition:opacity .25s ease}
+.theme .moon{opacity:0}
+html[data-theme="light"] .theme .sun{opacity:0}
+html[data-theme="light"] .theme .moon{opacity:1}
+.theme.pulse{box-shadow:0 0 0 4px color-mix(in oklab, var(--text) 12%, transparent)}
+
+.avatar__wrap{position:relative; width:160px; height:160px; will-change:transform; transition:transform .3s ease}
+.avatar__wrap:hover{transform:translateY(-3px) rotate(1.2deg)}
+.avatar__ring{position:absolute; inset:-6px; border-radius:50%; background:linear-gradient(180deg, color-mix(in oklab, var(--brandB) 80%, transparent), color-mix(in oklab, var(--brandA) 80%, transparent)); filter:blur(4px); opacity:.55; animation:spin 18s linear infinite}
+.avatar{width:100%; height:100%; border-radius:50%; object-fit:cover; border:2px solid var(--accent-2); box-shadow:0 0 12px color-mix(in oklab, var(--accent-2) 22%, transparent)}
+.status{position:absolute; inset-inline-end:10px; bottom:10px; width:18px; height:18px; border-radius:50%; background:radial-gradient(circle at 30% 30%, #caffd2, #22c55e); box-shadow:0 0 0 2px rgba(0,0,0,.35), 0 0 12px #22c55e}
+
+.id .name{margin:0; font-weight:800; letter-spacing:.2px; font-size:clamp(20px,3vw,32px)}
+.id .aka{font-weight:600; opacity:.85}
+.role{margin:.25rem 0 0; color:var(--muted)}
+.ens{display:flex; align-items:center; gap:.5rem; margin:.25rem 0 0; color:var(--link)}
+.ico{width:18px; height:18px; fill:currentColor}
+.meta{margin:.25rem 0 0; color:color-mix(in oklab, var(--text) 70%, transparent)}
+.bio-short{margin:.4rem 0 0; color:color-mix(in oklab, var(--text) 88%, transparent)}
+html[data-theme="light"] .bio-short{color:#1e293b}
+
+/* Badges */
+.badges{display:flex; flex-wrap:wrap; gap:10px; margin:18px 0 10px}
+.chip{--x:.5; position:relative; padding:10px 14px; border-radius:999px; font-size:.92rem; color:var(--on-accent); background:linear-gradient(100deg, var(--accent), var(--accent-2)); border:1px solid color-mix(in oklab, var(--text) 14%, transparent); box-shadow:inset 0 -1px 0 rgba(255,255,255,.08), var(--shadow-soft); transition:transform var(--dur-2) var(--ease), box-shadow var(--dur-2) var(--ease)}
+.chip:hover{transform:translateY(-2px) scale(1.04); box-shadow:0 10px 20px color-mix(in oklab, var(--accent) 30%, transparent)}
+.chip::after{content:""; position:absolute; inset:0; border-radius:inherit; background:radial-gradient(180px 80px at calc(var(--x)*100%) -40%, rgba(255,255,255,.16), transparent 40%); pointer-events:none}
+
+/* Stats */
+.stats{display:grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap:12px; margin:18px 0}
+.stat{position:relative; padding:16px; border-radius:14px; background:linear-gradient(180deg, color-mix(in oklab, var(--panel) 70%, transparent), color-mix(in oklab, var(--panel) 22%, transparent)); border:1px solid color-mix(in oklab, var(--text) 10%, transparent); text-align:center; overflow:hidden}
+.stat::before{content:""; position:absolute; inset:0; background:linear-gradient(90deg, transparent, rgba(255,255,255,.07), transparent); transform:translateX(-120%); transition:transform .6s ease}
+.stat:hover::before{transform:translateX(120%)}
+.stat__num{font-size:clamp(20px,2.5vw,28px); font-weight:900; background:linear-gradient(90deg, var(--accent), var(--accent-2)); -webkit-background-clip:text; background-clip:text; color:transparent}
+.stat__label{display:block; margin-top:6px; color:var(--muted); font-size:.9rem}
+
+/* Bio */
+.bio{color:color-mix(in oklab, var(--text) 92%, transparent); line-height:1.85; margin:6px 0 12px}
+.bio p{margin:.6rem 0}
+.live{display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px; padding:12px; border-radius:14px; background:var(--glass); border:1px solid color-mix(in oklab, var(--text) 10%, transparent)}
+.metric{font-size:clamp(18px,2vw,26px); font-weight:800; margin:6px 0 0}
+.subtle{color:var(--muted)}
+.snippet{border:1px solid color-mix(in oklab, var(--text) 12%, transparent); border-radius:14px; overflow:hidden; background:linear-gradient(180deg, color-mix(in oklab, var(--panel) 70%, transparent), color-mix(in oklab, var(--panel) 20%, transparent)); box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+.snippet__head{display:flex; align-items:center; gap:8px; padding:10px 12px; border-bottom:1px solid color-mix(in oklab, var(--text) 12%, transparent)}
+.dot{width:10px; height:10px; border-radius:50%; display:inline-block; box-shadow:0 0 10px rgba(255,255,255,.12)}
+.red{background:#ef4444}.amber{background:#f59e0b}.green{background:#22c55e}
+.snippet__body{margin:0; padding:12px; font-size:.94rem; line-height:1.6; color:color-mix(in oklab, var(--text) 92%, transparent)}
+.snippet__body code{white-space:pre-wrap; display:block}
+
+/* CTA */
+.cta{display:flex; flex-wrap:wrap; gap:12px; margin:8px 0 24px; perspective:600px}
+.tilt{transform-style:preserve-3d; transition: transform .3s cubic-bezier(.25,.8,.25,1)}
+.tilt:hover{transform:translateY(-2px) rotateY(-3deg)}
+.btn{display:inline-flex; align-items:center; justify-content:center; padding:12px 18px; border-radius:12px; font-weight:700; text-decoration:none; border:1px solid color-mix(in oklab, var(--text) 12%, transparent); transition:transform .25s, box-shadow .25s; min-height:44px}
+.btn--primary{background:linear-gradient(100deg, var(--accent), var(--accent-2)); color:var(--on-accent)}
+.btn--primary:hover{box-shadow:0 12px 28px color-mix(in oklab, var(--accent) 32%, transparent)}
+.btn--ghost{background:color-mix(in oklab, var(--panel) 60%, transparent); color:var(--text)}
+.btn--ghost:hover{box-shadow:0 12px 20px color-mix(in oklab, var(--accent-2) 22%, transparent)}
+.term{max-width:100%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.term::before{content:attr(data-cmd); font-family:"JetBrains Mono","Fira Code",ui-monospace; margin-inline-end:.5rem; opacity:.92}
+
+/* Navigation */
+.site-nav{display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin:14px 0 10px}
+.pill-link{display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:12px; background:var(--glass); border:1px solid color-mix(in oklab, var(--text) 12%, transparent); color:var(--text); text-decoration:none; transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease}
+.pill-link:hover{transform:translateY(-2px); border-color:color-mix(in oklab, var(--accent-2) 70%, transparent); box-shadow:0 10px 20px color-mix(in oklab, var(--accent) 18%, transparent)}
+.pill-link:focus-visible{outline:2px solid color-mix(in oklab, var(--accent-2) 70%, transparent); outline-offset:2px}
+
+/* Links */
+.links{display:flex; flex-wrap:wrap; gap:16px; opacity:.95}
+.link{position:relative; color:#8ea5ff; text-decoration:none}
+.link::after{content:""; position:absolute; inset-inline:0; bottom:-2px; height:2px; background:linear-gradient(90deg, var(--accent), var(--accent-2)); transform:scaleX(0); transform-origin:inline-start; transition:transform .35s ease}
+/* transform-origin has no logical keyword everywhere yet; pin per direction. */
+:dir(ltr) .link::after{transform-origin:left}
+:dir(rtl) .link::after{transform-origin:right}
+.link:hover::after{transform:scaleX(1)}
+
+/* Sparks */
+.sparks{position:absolute; inset:0; pointer-events:none}
+.spark{position:absolute; width:10px; height:10px; background:radial-gradient(circle, #fff, rgba(255,255,255,0) 70%); filter:drop-shadow(0 0 8px rgba(255,255,255,.6)); border-radius:50%; opacity:.7}
+.s1{top:12%; left:8%; animation:spark 5.2s linear infinite}
+.s2{top:22%; right:10%; animation:spark 6.1s linear infinite .6s}
+.s3{bottom:18%; left:14%; animation:spark 7s linear infinite 1.2s}
+.s4{bottom:8%; right:18%; animation:spark 5.6s linear infinite 1.8s}
+@keyframes spark{0%{transform:translateY(0) scale(.9)}50%{transform:translateY(-12px) scale(1.1)}100%{transform:translateY(0) scale(.9)}}
+
+/* Pages */
+.page{position:relative; width:min(1040px,96vw); background:linear-gradient(180deg,var(--panel),color-mix(in oklab,var(--panel)70%,transparent)); border:1px solid color-mix(in oklab,var(--text) 10%, transparent); border-radius:22px; padding:clamp(20px,3vw,28px); margin:32px auto; box-shadow:var(--shadow); backdrop-filter:blur(8px) saturate(130%)}
+.page__header{display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; align-items:center; margin-bottom:16px}
+.page h1{margin:0; font-size:clamp(22px,3vw,32px)}
+.grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px}
+.card-soft{padding:14px; border-radius:14px; background:var(--glass); border:1px solid color-mix(in oklab,var(--text) 12%, transparent); box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+.gallery{display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px}
+.gallery img{width:100%; border-radius:14px; object-fit:cover; border:1px solid color-mix(in oklab,var(--text) 10%, transparent); cursor:pointer; transition:transform .25s ease, box-shadow .25s ease}
+.gallery img:hover{transform:translateY(-4px) scale(1.02); box-shadow:0 12px 28px rgba(0,0,0,.35)}
+.filters{display:flex; flex-wrap:wrap; gap:8px; margin:10px 0}
+.search__input{width:100%; padding:12px; border-radius:12px; border:1px solid color-mix(in oklab,var(--text) 14%, transparent); background:color-mix(in oklab,var(--panel) 70%, transparent); color:var(--text); font-family:"JetBrains Mono","Fira Code",ui-monospace}
+.table{width:100%; border-collapse:collapse; margin-top:10px}
+.table th,.table td{padding:10px; border-bottom:1px solid color-mix(in oklab,var(--text) 12%, transparent)}
+/* NOTE: the active .pill definition lives later in this file (see "Multi-section
+   layout"). The earlier duplicate here was fully overridden dead code and has
+   been removed to keep a single source of truth. */
+.lightbox{position:fixed; inset:0; background:rgba(0,0,0,.6); display:none; align-items:center; justify-content:center; padding:20px; z-index:20}
+.lightbox.is-open{display:flex}
+.lightbox img{max-width:min(90vw,960px); max-height:80vh; border-radius:16px; box-shadow:0 16px 32px rgba(0,0,0,.4)}
+
+.cta-bar{display:flex; flex-wrap:wrap; gap:10px; margin-top:10px}
+.chart{height:180px; display:flex; align-items:flex-end; gap:10px}
+.chart__bar{flex:1; background:var(--glass); border:1px solid color-mix(in oklab,var(--text) 10%, transparent); border-radius:10px 10px 4px 4px; position:relative; overflow:hidden}
+.chart__bar span{position:absolute; inset:0; background:linear-gradient(180deg,var(--accent-2),var(--accent)); transform-origin:bottom; transform:scaleY(var(--v)); transition:transform .6s var(--ease)}
+.chart__bar label{position:absolute; bottom:-22px; left:50%; transform:translateX(-50%); font-size:.85rem; white-space:nowrap; color:var(--muted)}
+
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;}
+
+/* =========================
+   Interactive Shell (v8.1.0)
+========================= */
+.shell{
+  margin-top:10px;
+  border-top:1px dashed color-mix(in oklab, var(--text) 14%, transparent);
+  background:linear-gradient(180deg, color-mix(in oklab, var(--panel) 70%, transparent),
+                                    color-mix(in oklab, var(--panel) 16%, transparent));
+  border:1px solid color-mix(in oklab, var(--text) 10%, transparent);
+  border-radius:14px; padding:14px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04);
+}
+.shell__header{
+  display:flex; align-items:center; gap:10px; margin-bottom:8px; opacity:.95;
+}
+.led{ width:10px; height:10px; border-radius:50%; box-shadow:0 0 10px rgba(255,255,255,.15) }
+/* LED blink effects */
+@keyframes blink { 50% { opacity:.3 } }
+.led--ok{ background:#22c55e; animation:blink 1.5s infinite }
+.led--net{ background:#06b6d4; animation:blink 2s infinite .5s }
+.led--sec{ background:var(--accent-2); animation:blink 2.8s infinite .3s }
+
+/* margin-inline-start:auto pushes the action buttons to the logical end of the
+   header; this is direction-aware and lays out correctly in both LTR and RTL
+   (verified against index.html dir="rtl"), so no extra RTL override is needed. */
+.shell__actions{ margin-inline-start:auto; display:flex; gap:8px }
+
+:focus-visible { outline:2px solid color-mix(in oklab, var(--brandB) 70%, #000); outline-offset:2px; }
+
+
+
+.shell__btn{
+  background:transparent; color:var(--text);
+  border:1px solid color-mix(in oklab, var(--text) 12%, transparent);
+  border-radius:8px; padding:6px 10px; cursor:pointer;
+  transition:transform .2s ease, opacity .2s ease;
+}
+.shell__btn:hover{ transform:translateY(-1px); opacity:1 }
+
+/* Adaptive height */
+.shell__output{
+  min-height:170px; max-height:40vh; overflow:auto;
+  background:color-mix(in oklab, var(--panel) 60%, transparent);
+  border-radius:10px; padding:10px; line-height:1.6; font-size:.92rem;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
+}
+.input-line{ display:flex; align-items:center; gap:8px; margin-top:10px }
+.prompt{ color:var(--accent); user-select:none } /* green prompt like shells */
+#input{
+  flex:1; min-height:40px; border:none; outline:none; background:transparent; color:var(--text);
+  border-bottom:1px dashed color-mix(in oklab, var(--text) 18%, transparent); padding:6px 2px;
+}
+.suggestions{margin-top:6px; color:var(--muted); font-size:.88rem; min-height:20px}
+.suggestions strong{color:var(--text)}
+
+.progress{position:relative; height:12px; background:color-mix(in oklab, var(--panel) 60%, transparent); border-radius:999px; overflow:hidden; border:1px solid color-mix(in oklab, var(--text) 12%, transparent)}
+.progress__bar{position:absolute; inset:0; width:0; background:linear-gradient(90deg, var(--accent-2), var(--accent)); animation:fill 1.8s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes fill{to{width:var(--w,60%)}}
+
+.badge-list{display:flex; flex-wrap:wrap; gap:8px; margin:6px 0}
+.badge-list .chip{background:linear-gradient(90deg, var(--accent-2), var(--accent)); color:var(--on-accent); font-size:.85rem}
+
+/* Multi-section layout */
+.section{border:1px solid color-mix(in oklab, var(--text) 12%, transparent); border-radius:18px; padding:18px; background:color-mix(in oklab, var(--panel) 60%, transparent); box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+.section__head{display:grid; gap:6px; margin-bottom:12px}
+.section__title{font-size:1.4rem}
+.section__lead{color:var(--muted)}
+.eyebrow{color:var(--brandB); font-weight:800; text-transform:uppercase; letter-spacing:.08em; font-size:.8rem}
+
+.grid{display:grid; gap:12px}
+.grid--cards{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+
+.panel{border:1px solid color-mix(in oklab, var(--text) 10%, transparent); border-radius:14px; padding:12px; background:var(--glass); display:grid; gap:8px; position:relative; overflow:hidden}
+.panel::after{content:""; position:absolute; inset:0; background:linear-gradient(120deg, transparent, color-mix(in oklab, var(--brandA) 7%, transparent)); pointer-events:none}
+.panel__top{display:flex; justify-content:space-between; align-items:center; gap:6px}
+.panel__title{font-size:1.1rem; margin:0}
+.panel__text{color:var(--muted); line-height:1.5}
+.panel__list{list-style:disc; padding-inline-start:18px; color:var(--text); display:grid; gap:4px}
+.panel__actions{display:flex; flex-wrap:wrap; gap:8px; align-items:center}
+
+.pill{display:inline-flex; align-items:center; gap:6px; padding:4px 10px; border-radius:999px; background:linear-gradient(120deg, var(--accent-2), var(--accent)); color:var(--on-accent); font-weight:700; font-size:.8rem}
+.pill--ghost{background:color-mix(in oklab, var(--panel) 70%, transparent); color:var(--text); border:1px solid color-mix(in oklab, var(--text) 12%, transparent)}
+
+.blog-list{display:grid; gap:10px; grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.blog-card{border:1px solid color-mix(in oklab, var(--text) 12%, transparent); border-radius:14px; padding:12px; background:var(--glass); display:grid; gap:8px}
+.blog-title{margin:0}
+.blog-desc{color:var(--muted); line-height:1.5}
+.blog-date{color:var(--muted); margin:0}
+
+.gallery{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px}
+.gallery__item{border-radius:14px; overflow:hidden; border:1px solid color-mix(in oklab, var(--text) 12%, transparent); background:var(--glass); box-shadow:0 10px 40px rgba(0,0,0,.25)}
+.gallery__item img{display:block; width:100%; height:180px; object-fit:cover}
+.gallery__item figcaption{padding:8px 10px}
+
+.skills-grid{display:grid; gap:10px; grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.skill-card{border:1px solid color-mix(in oklab, var(--text) 12%, transparent); border-radius:14px; padding:12px; background:var(--glass); display:grid; gap:8px}
+.skill-card__top{display:flex; justify-content:space-between; align-items:center}
+.skill-card p{color:var(--muted); margin:0}
+
+.timeline--inline{border-inline-start:2px dashed color-mix(in oklab, var(--text) 18%, transparent); padding-inline-start:14px}
+
+.contact-grid{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.contact-card{border:1px solid color-mix(in oklab, var(--text) 12%, transparent); border-radius:14px; padding:12px; background:var(--glass); display:grid; gap:10px}
+.contact-list{list-style:none; padding:0; margin:0; display:grid; gap:6px}
+.contact-list span{color:var(--muted)}
+
+.card-form{margin-top:10px; padding:12px; border-radius:12px; background:var(--glass); border:1px solid color-mix(in oklab, var(--text) 12%, transparent); display:grid; gap:10px}
+.card-form label{font-weight:700; font-size:.95rem}
+.card-form input,.card-form textarea{width:100%; padding:10px; border-radius:10px; border:1px solid color-mix(in oklab, var(--text) 16%, transparent); background:color-mix(in oklab, var(--panel) 70%, transparent); color:var(--text)}
+.card-form button{justify-self:start}
+
+.timeline{position:relative; padding-inline-start:14px; border-inline-start:2px dashed color-mix(in oklab, var(--text) 18%, transparent); margin:10px 0}
+.timeline__item{margin:10px 0; position:relative; padding-inline-start:10px}
+.timeline__item::before{content:""; position:absolute; inset-inline-start:-16px; top:6px; width:10px; height:10px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 6px color-mix(in oklab, var(--accent) 30%, transparent)}
+
+.achievements{display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:10px; margin:10px 0}
+.achievements .stat{min-height:120px}
+
+.toast{position:fixed; inset-inline-end:16px; bottom:16px; padding:12px 14px; border-radius:12px; background:linear-gradient(90deg, var(--accent-2), var(--accent)); color:var(--on-accent); font-weight:800; opacity:0; transform:translateY(10px); transition:opacity var(--dur-2) var(--ease), transform var(--dur-2) var(--ease); pointer-events:none; z-index:10}
+.toast.is-visible{opacity:1; transform:translateY(0)}
+
+.skeleton{position:relative; overflow:hidden; background:color-mix(in oklab, var(--panel) 60%, transparent); border-radius:10px; min-height:18px}
+.skeleton::after{content:""; position:absolute; inset:0; background:linear-gradient(90deg, transparent, rgba(255,255,255,.08), transparent); animation:shine 1.2s linear infinite}
+@keyframes shine{to{transform:translateX(100%)}}
+
+/* line coloring */
+.ok{ color:#22c55e } .err{ color:#f87171 } .info{ color:#93c5fd } .num{ color:#93c5fd }
+.tbl{ white-space:pre } /* for help table alignment */
+
+/* Light-mode contrast boost for info */
+html[data-theme="light"] .info{ color:#1e3a8a }
+
+/* mobile */
+@media (max-width:480px){
+  .shell__title{ font-size:.9rem }
+  #input{ min-height:38px }
+}
+
+/* Terminal log (legacy styles kept if used elsewhere) */
+.terminal{margin-top:6px; border-top:1px dashed color-mix(in oklab, var(--text) 14%, transparent); padding-top:10px; max-height:120px; overflow:hidden}
+.term-line{display:flex; align-items:center; gap:6px; color:color-mix(in oklab, var(--text) 88%, transparent)}
+.term-line .ok{color:#22c55e}
+.term-line .num{color:#93c5fd}
+
+/* Responsiveness */
+@media (max-width:1200px){ .card{width:min(880px,94vw)} }
+@media (max-width:1024px){ .card{width:min(720px,94vw)} .avatar__wrap{width:128px; height:128px} .bio p{font-size:.95rem} }
+@media (max-width:880px){ .avatar__wrap{width:120px; height:120px} }
+@media (max-width:720px){ .card__header{grid-template-columns:1fr; text-align:center} .theme{justify-self:center; grid-column:1 / -1; margin-bottom:8px} .avatar__wrap{margin:0 auto} .stats{grid-template-columns: repeat(2, minmax(0,1fr))} }
+@media (max-width:480px){ .id .name{font-size:1.35rem} .bio p{font-size:.88rem} .stats{grid-template-columns:1fr} .btn{flex:1 1 100%; text-align:center} }
+
+/* Backdrop fallback */
+@supports not (backdrop-filter: blur(6px)) { .card { background: var(--panel); } }
+
+/* Reduced motion */
+/* ===== Cross-document View Transitions (progressive enhancement, Plan 007) =====
+   Only browsers that support the API act on this; everyone else navigates as
+   before. A restrained cross-fade — no slide/scale — keeps it premium, not flashy. */
+@view-transition{ navigation:auto; }
+::view-transition-old(root),
+::view-transition-new(root){
+  animation-duration:var(--dur-3);
+  animation-timing-function:var(--ease);
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important}
+  /* Neutralize the view-transition cross-fade for reduced-motion users */
+  ::view-transition-old(root),
+  ::view-transition-new(root){ animation:none !important; mix-blend-mode:normal; }
+}
+.help{
+  display:grid; grid-template-columns:auto 1fr; gap:8px 18px;
+  padding:12px; border:1px solid color-mix(in oklab, var(--text) 14%, transparent);
+  border-radius:10px;
+  background:linear-gradient(180deg, color-mix(in oklab, var(--panel) 70%, transparent),
+                                    color-mix(in oklab, var(--panel) 10%, transparent));
+}
+.help__head{ grid-column:1 / -1; display:flex; justify-content:space-between;
+  font-weight:700; color:color-mix(in oklab, var(--text) 86%, transparent);
+  padding-bottom:6px; border-bottom:1px dashed color-mix(in oklab, var(--text) 14%, transparent);
+  margin-bottom:6px;
+}
+.help__row{ display:contents; }
+.help code{
+  padding:2px 8px; border-radius:8px; border:1px solid color-mix(in oklab, var(--text) 14%, transparent);
+  background:color-mix(in oklab, var(--panel) 70%, transparent);
+}
+.help span{ color:var(--muted); align-self:center; }

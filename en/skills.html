@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://github.com https://avatars.githubusercontent.com https://images.unsplash.com; connect-src 'self' https://api.github.com; manifest-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'" />
+  <link rel="icon" type="image/svg+xml" href="/profile-card/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Skills • Radikal</title>
+  <meta name="color-scheme" content="dark light" />
+  <link rel="stylesheet" href="/profile-card/profile-card.css" />  <link rel="preload" href="/profile-card/assets/fonts/vazirmatn-arabic-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/profile-card/assets/fonts/vazirmatn-arabic-700-normal.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+  <div class="bg" aria-hidden="true">
+    <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
+    <div class="hud"><div class="scanline"></div><div class="hud-corner tl"></div><div class="hud-corner tr"></div><div class="hud-corner bl"></div><div class="hud-corner br"></div></div>
+  </div>
+
+  <main class="wrap">
+    <section class="page" aria-labelledby="skills-title">
+      <header class="page__header">
+        <h1 id="skills-title">Skills & Stack</h1>
+        <a class="btn btn--ghost term" href="/profile-card/en/">&larr; Back</a>
+      </header>
+      <nav class="site-nav" aria-label="Routes">
+        <a class="pill-link" href="/profile-card/en/">Home</a>
+        <a class="pill-link" href="/profile-card/en/projects.html">Projects</a>
+        <a class="pill-link" href="/profile-card/en/blog.html">Blog</a>
+        <a class="pill-link" href="/profile-card/en/gallery.html">Gallery</a>
+        <a class="pill-link" href="/profile-card/en/timeline.html">Timeline</a>
+        <a class="pill-link" href="/profile-card/en/contact.html">Contact</a>
+        <a class="pill-link" href="/profile-card/" hreflang="fa">FA</a>
+      </nav>
+      <div class="grid" id="skillGrid"></div>
+      <div class="chart" id="chart" aria-hidden="true"></div>
+    </section>
+  </main>
+
+<script type="module" src="/profile-card/pages/skills.js"></script>
+</body>
+</html>

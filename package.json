@@ -1,0 +1,32 @@
+{
+  "name": "profile-card",
+  "version": "8.2.0",
+  "description": "Radikal — interactive bilingual (fa/en) Web3 profile card with a CLI terminal, PWA, and zero-framework static build.",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/smoke.mjs",
+    "serve": "node -e \"import('./test/server.mjs').then(async m=>{const s=await m.startServer(3000);console.log('http://127.0.0.1:'+s.port+'/profile-card/')})\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0xRadikal/profile-card.git"
+  },
+  "keywords": [
+    "web3",
+    "profile-card",
+    "cli",
+    "pwa",
+    "github-pages",
+    "static-site"
+  ],
+  "author": "Mohammad Shirvani (Radikal)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/0xRadikal/profile-card/issues"
+  },
+  "homepage": "https://0xradikal.github.io/profile-card/",
+  "devDependencies": {
+    "playwright": "^1.61.1"
+  }
+}

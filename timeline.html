@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="fa" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://github.com https://avatars.githubusercontent.com https://images.unsplash.com; connect-src 'self' https://api.github.com; manifest-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'" />
+  <link rel="icon" type="image/svg+xml" href="/profile-card/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Timeline • Radikal</title>
+  <meta name="color-scheme" content="dark light" />
+  <link rel="stylesheet" href="profile-card.css" />  <link rel="preload" href="/profile-card/assets/fonts/vazirmatn-arabic-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/profile-card/assets/fonts/vazirmatn-arabic-700-normal.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+  <div class="bg" aria-hidden="true">
+    <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
+    <div class="hud">
+      <div class="scanline"></div><div class="hud-corner tl"></div><div class="hud-corner tr"></div><div class="hud-corner bl"></div><div class="hud-corner br"></div>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <section class="page" aria-labelledby="timeline-title">
+      <header class="page__header">
+        <h1 id="timeline-title">Timeline حرفه‌ای</h1>
+        <a class="btn btn--ghost term" href="/profile-card/">&larr; بازگشت</a>
+      </header>
+      <nav class="site-nav" aria-label="مسیرها">
+        <a class="pill-link" href="/profile-card/">خانه</a>
+        <a class="pill-link" href="/profile-card/projects.html">پروژه‌ها</a>
+        <a class="pill-link" href="/profile-card/blog.html">وبلاگ</a>
+        <a class="pill-link" href="/profile-card/gallery.html">گالری</a>
+        <a class="pill-link" href="/profile-card/skills.html">مهارت‌ها</a>
+        <a class="pill-link" href="/profile-card/contact.html">ارتباط</a>
+        <a class="pill-link" href="/profile-card/en/timeline.html" hreflang="en">EN</a>
+      </nav>
+      <div class="timeline" id="timeline" aria-live="polite"></div>
+    </section>
+  </main>
+
+<script type="module" src="/profile-card/pages/timeline.js"></script>
+</body>
+</html>

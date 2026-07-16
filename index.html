@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="fa" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://github.com https://avatars.githubusercontent.com https://images.unsplash.com; connect-src 'self' https://api.github.com; manifest-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Radikal • Profile Card</title>
+  <meta name="description" content="Web3 researcher & security engineer: DeFi, DAO, TON, nodes, on-chain forensics. Built, tested, verified." />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <link rel="canonical" href="https://0xradikal.github.io/profile-card/" />
+
+  <meta property="og:url" content="https://0xradikal.github.io/profile-card/">
+  <meta property="og:site_name" content="Radikal">
+  <meta name="twitter:image" content="https://github.com/0xradikal.png">
+  <meta name="twitter:creator" content="@0xradikal">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Radikal • Profile Card" />
+  <meta property="og:description" content="Web3 Research • Security • Node Ops • DeFi/DAO • TON • React/Next.js" />
+  <meta property="og:type" content="profile" />
+  <meta property="og:image" content="https://github.com/0xradikal.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#0b0f14" />
+  <link rel="manifest" href="/profile-card/manifest.json" />
+  <link rel="icon" type="image/svg+xml" href="/profile-card/favicon.svg" />
+  <link rel="apple-touch-icon" href="/profile-card/favicon.svg" />
+
+  <!-- Fonts (self-hosted, OFL — see assets/fonts/) -->
+  <link rel="preload" href="/profile-card/assets/fonts/vazirmatn-arabic-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/profile-card/assets/fonts/vazirmatn-arabic-700-normal.woff2" as="font" type="font/woff2" crossorigin />
+
+  <link rel="stylesheet" href="/profile-card/profile-card.css" />
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"Mohammad Shirvani",
+    "alternateName":"Radikal",
+    "jobTitle":"Web3 Researcher",
+    "url":"https://0xradikal.github.io",
+    "sameAs":["https://github.com/0xradikal","https://x.com/0xradikal","https://t.me/Oxradikal"]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#input">پرش به رابط خط فرمان</a>
+
+  <canvas id="particles" class="particles" aria-hidden="true"></canvas>
+
+  <div class="bg" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- HUD -->
+    <div class="hud">
+      <div class="scanline"></div>
+      <div class="hud-corner tl"></div>
+      <div class="hud-corner tr"></div>
+      <div class="hud-corner bl"></div>
+      <div class="hud-corner br"></div>
+      <div class="hud-grid parallax" data-depth="0.2"></div>
+      <div class="hud-grid fine parallax" data-depth="0.35"></div>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <article class="card" role="region" aria-labelledby="name">
+      <div class="card__glow" aria-hidden="true"></div>
+      <div class="card__shine" aria-hidden="true"></div>
+
+      <header class="card__header stage">
+        <button class="theme" id="themeToggle" type="button" aria-label="Toggle theme" aria-pressed="false" title="Theme">
+          <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4V2m0 20v-2m8-8h2M2 12h2m13.66 6.66 1.41 1.41M4.93 4.93 6.34 6.34m0 11.32-1.41 1.41m12.73-12.73 1.41-1.41" stroke="currentColor" stroke-width="1.6" fill="none"/></svg>
+          <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"/></svg>
+        </button>
+
+        <div class="avatar__wrap">
+          <div class="avatar__ring" aria-hidden="true"></div>
+          <img class="avatar" src="https://github.com/0xradikal.png" alt="تصویر محمد شیروانی (Radikal)" width="160" height="160" />
+          <span class="status" title="Available" aria-hidden="true"></span>
+          <span class="sr-only">Status: Available</span>
+        </div>
+        <div class="id">
+          <h1 class="name" id="name">Mohammad Shirvani <span class="aka">(Radikal)</span></h1>
+          <p class="role mono">Web3 Researcher • DeFi • Security Engineer</p>
+          <p class="ens mono"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l7.5 4.3v11.4L12 22l-7.5-4.3V6.3L12 2z"/></svg> Radikal.eth</p>
+          <p class="meta">📍 Shahrekord • Software Engineering @ TVU</p>
+          <p class="bio-short">I engineer systems where security meets measurable design — built, tested, verified.</p>
+        </div>
+      </header>
+
+      <section class="badges stage" aria-label="Tags">
+        <span class="chip">DeFi</span><span class="chip">DAO</span><span class="chip">TON</span>
+        <span class="chip">On-Chain Forensics</span><span class="chip">Node Ops</span>
+        <span class="chip">React / Next.js</span><span class="chip">Docker • Grafana</span>
+        <span class="chip">Security Research</span>
+      </section>
+
+      <section class="stats stage" aria-label="Highlights">
+        <div class="stat"><span class="stat__num">6.5K+</span><span class="stat__label">CryptoPIA Members</span></div>
+        <div class="stat"><span class="stat__num">17</span><span class="stat__label">Active Nodes</span></div>
+        <div class="stat"><span class="stat__num">99.9%</span><span class="stat__label">Uptime</span></div>
+        <div class="stat"><span class="stat__num">$20K+</span><span class="stat__label">Rewards</span></div>
+      </section>
+
+      <section class="bio stage">
+        <p>Self-taught researcher focused on defensive infra, automation, and wallet forensics. Curiosity is my debugging tool.</p>
+        <p>Operating multi-chain infra powering DeFi & TON research initiatives. Open to collaborations and infra/security roles.</p>
+      </section>
+
+      <section class="live stage" aria-label="Live metrics">
+        <div>
+          <p class="mono subtle">GitHub Stars (live)</p>
+          <p class="metric" id="starsLive" aria-live="polite">...</p>
+        </div>
+        <div>
+          <p class="mono subtle">Latest Commit</p>
+          <p class="metric" id="commitLive" aria-live="polite">fetching…</p>
+        </div>
+      </section>
+
+      <section class="snippet stage" aria-label="Code sample">
+        <div class="snippet__head">
+          <span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span>
+          <span class="mono">vanilla.js</span>
+          <button class="shell__btn" id="copySnippet" type="button">copy</button>
+        </div>
+        <pre class="snippet__body" aria-live="polite"><code id="snippetCode">const secureFetch = async (url) => {
+  const res = await fetch(url, { headers: { 'Accept': 'application/json' } });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  return res.json();
+};
+
+const debounce = (fn, wait = 180) => {
+  let t; return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), wait); };
+};</code></pre>
+      </section>
+
+
+      <nav class="site-nav stage" aria-label="لینک‌های سریع">
+        <a class="pill-link" href="#projects">پروژه‌ها</a>
+        <a class="pill-link" href="#blog">وبلاگ</a>
+        <a class="pill-link" href="#gallery">گالری</a>
+        <a class="pill-link" href="#skills">مهارت‌ها</a>
+        <a class="pill-link" href="#timeline">تایم‌لاین</a>
+        <a class="pill-link" href="#contact">ارتباط</a>
+        <a class="pill-link" href="/profile-card/en/" hreflang="en">EN</a>
+      </nav>
+
+      <section class="section stage" id="projects" aria-labelledby="projects-title">
+        <div class="section__head">
+          <p class="eyebrow">پروژه‌ها</p>
+          <h2 class="section__title" id="projects-title">نمونه کارهای منتخب</h2>
+          <p class="section__lead">از زیرساخت ولیدیتور تا محصولات امنیتی و محتوایی.</p>
+        </div>
+        <div class="grid grid--cards">
+          <article class="panel">
+            <div class="panel__top">
+              <p class="pill pill--ghost">Community</p>
+              <span class="subtle">۶.۵k عضو</span>
+            </div>
+            <h3 class="panel__title">CryptoPIA</h3>
+            <p class="panel__text">جامعه فارسی زبان برای تحقیق دیفای و TON با جلسات آموزشی و اتوماسیون محتوا.</p>
+            <ul class="panel__list">
+              <li>گرداننده و استراتژیست محتوا</li>
+              <li>تحلیل on-chain و ورکشاپ</li>
+            </ul>
+            <div class="panel__actions">
+              <a class="btn btn--ghost term" href="https://t.me/crypttopiaa" target="_blank" rel="noopener">&gt; join</a>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel__top">
+              <p class="pill pill--ghost">Infra • Security</p>
+              <span class="subtle">۹۹.۹٪ uptime</span>
+            </div>
+            <h3 class="panel__title">Node Ops</h3>
+            <p class="panel__text">فلیت ولیدیتور چند زنجیره‌ای با داشبورد مانیتورینگ، آلارم و سخت‌سازی امنیتی.</p>
+            <ul class="panel__list">
+              <li>Prometheus / Grafana</li>
+              <li>Failover + PagerDuty style alerts</li>
+            </ul>
+            <div class="panel__actions">
+              <span class="chip">TON</span><span class="chip">EVM</span><span class="chip">Solana</span>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel__top">
+              <p class="pill pill--ghost">Product</p>
+              <span class="mono subtle">Secure by design</span>
+            </div>
+            <h3 class="panel__title">Raydikal VPN</h3>
+            <p class="panel__text">VPN با پلن‌های چند دستگاهی، پنل مدیریت و ربات تلگرام برای صدور و تمدید.</p>
+            <ul class="panel__list">
+              <li>Stack: Node.js, Docker</li>
+              <li>اتوماتیک‌سازی صدور و متریک</li>
+            </ul>
+            <div class="panel__actions">
+              <a class="btn btn--ghost term" href="#contact">&gt; demo</a>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel__top">
+              <p class="pill pill--ghost">Security Tools</p>
+              <span class="mono subtle">Forensics</span>
+            </div>
+            <h3 class="panel__title">Wallet Watch</h3>
+            <p class="panel__text">بسته اسکریپت برای ردیابی تراکنش، هشدار فیشینگ و ارزیابی ریسک کیف‌پول.</p>
+            <ul class="panel__list">
+              <li>Webhook + Telegram alerts</li>
+              <li>جستجوی ایونت و آدرس مشکوک</li>
+            </ul>
+            <div class="panel__actions">
+              <a class="btn btn--ghost term" href="#blog">&gt; read notes</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section stage" id="blog" aria-labelledby="blog-title">
+        <div class="section__head">
+          <p class="eyebrow">وبلاگ</p>
+          <h2 class="section__title" id="blog-title">یادداشت‌های تازه</h2>
+          <p class="section__lead">نمونه مقالات فنی و تجربه‌های عملیات.</p>
+        </div>
+        <div class="blog-list">
+          <article class="blog-card">
+            <div>
+              <p class="pill pill--ghost">Infra</p>
+              <p class="blog-date">مارس ۲۰۲۵</p>
+            </div>
+            <h3 class="blog-title">Playbook مانیتورینگ ولیدیتور TON</h3>
+            <p class="blog-desc">چک‌لیست راه‌اندازی نود، آلارم‌های حیاتی و بهینه‌سازی latency در شبکه‌های PoS.</p>
+            <a class="link" href="#timeline">مطالعه خلاصه →</a>
+          </article>
+          <article class="blog-card">
+            <div>
+              <p class="pill pill--ghost">Security</p>
+              <p class="blog-date">فوریه ۲۰۲۵</p>
+            </div>
+            <h3 class="blog-title">مدل تهدید برای کیف‌پول‌های دیفای</h3>
+            <p class="blog-desc">سناریوهای حمله رایج، لیست چک سخت‌سازی و روش‌های پایش تراکنش‌های پرریسک.</p>
+            <a class="link" href="#contact">درخواست مشاوره →</a>
+          </article>
+          <article class="blog-card">
+            <div>
+              <p class="pill pill--ghost">Research</p>
+              <p class="blog-date">ژانویه ۲۰۲۵</p>
+            </div>
+            <h3 class="blog-title">اتوماسیون رأی‌گیری DAO</h3>
+            <p class="blog-desc">طراحی بات تلگرام برای پیشنهاد، رأی‌گیری و گزارش وضعیت قراردادهای حاکمیتی.</p>
+            <a class="link" href="#projects">دیدن پروژه مرتبط →</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="section stage" id="gallery" aria-labelledby="gallery-title">
+        <div class="section__head">
+          <p class="eyebrow">گالری</p>
+          <h2 class="section__title" id="gallery-title">تصاویر و داشبوردها</h2>
+          <p class="section__lead">برش‌هایی از داشبورد، ورکشاپ و دیزاین.</p>
+        </div>
+        <div class="gallery">
+          <figure class="gallery__item">
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80" alt="گراف مانیتورینگ سرور" loading="lazy" />
+            <figcaption class="mono subtle">Grafana uptime dashboard</figcaption>
+          </figure>
+          <figure class="gallery__item">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80" alt="میز کار با لپ‌تاپ و کد" loading="lazy" />
+            <figcaption class="mono subtle">Node ops runbook</figcaption>
+          </figure>
+          <figure class="gallery__item">
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80" alt="نمایش اسلاید آموزشی" loading="lazy" />
+            <figcaption class="mono subtle">Workshop deck</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section stage" id="skills" aria-labelledby="skills-title">
+        <div class="section__head">
+          <p class="eyebrow">مهارت‌ها</p>
+          <h2 class="section__title" id="skills-title">جایی که تجربه دارم</h2>
+          <p class="section__lead">ترکیب تحقیق، دیفای و مهندسی زیرساخت.</p>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <div class="skill-card__top">
+              <h3>Security Engineering</h3>
+              <span class="mono subtle">92%</span>
+            </div>
+            <p>حسابرسی کانفیگ، تهدیدشناسی و اتوماسیون واکنش.</p>
+            <div class="progress" aria-label="امنیت"><span class="progress__bar" style="--w:92%"></span></div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-card__top">
+              <h3>Node Ops / SRE</h3>
+              <span class="mono subtle">90%</span>
+            </div>
+            <p>راه‌اندازی نود، مانیتورینگ و بقاپذیری سرویس.</p>
+            <div class="progress" aria-label="Node Ops"><span class="progress__bar" style="--w:90%"></span></div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-card__top">
+              <h3>JavaScript Front-end</h3>
+              <span class="mono subtle">85%</span>
+            </div>
+            <p>اپلیکیشن‌های واکنش‌گرا، PWA و بهینه‌سازی عملکرد.</p>
+            <div class="progress" aria-label="Front-end"><span class="progress__bar" style="--w:85%"></span></div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-card__top">
+              <h3>DeFi Research</h3>
+              <span class="mono subtle">88%</span>
+            </div>
+            <p>آنالیز پروتکل، ردیابی جریان سرمایه و تدوین پلی‌بوک.</p>
+            <div class="progress" aria-label="DeFi"><span class="progress__bar" style="--w:88%"></span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section stage" id="timeline" aria-labelledby="timeline-title">
+        <div class="section__head">
+          <p class="eyebrow">تایم‌لاین</p>
+          <h2 class="section__title" id="timeline-title">مسیر کوتاه</h2>
+          <p class="section__lead">نمونه نقاط عطف حرفه‌ای.</p>
+        </div>
+        <div class="timeline timeline--inline">
+          <div class="timeline__item"><strong>۲۰۲۱</strong><div>تأسیس CryptoPIA و شروع تولید محتوا.</div></div>
+          <div class="timeline__item"><strong>۲۰۲۲</strong><div>گسترش نودهای TON و EVM با ۹۹.۹٪ آپ‌تایم.</div></div>
+          <div class="timeline__item"><strong>۲۰۲۳</strong><div>ساخت تولکیت Wallet Watch برای فورنزیک.</div></div>
+          <div class="timeline__item"><strong>۲۰۲۴</strong><div>مرور امنیتی برای محصولات دیفای و ابزار DAO.</div></div>
+        </div>
+      </section>
+
+      <section class="section stage" id="contact" aria-labelledby="contact-title">
+        <div class="section__head">
+          <p class="eyebrow">Contact</p>
+          <h2 class="section__title" id="contact-title">راه‌های ارتباط</h2>
+          <p class="section__lead">مثال تماس و فرم سریع را پر کردم تا آماده استفاده باشد.</p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-card">
+            <h3>راه‌های سریع</h3>
+            <ul class="contact-list">
+              <li><span>ایمیل:</span> <a href="mailto:radikal@example.com">radikal@example.com</a></li>
+              <li><span>تلگرام:</span> <a href="https://t.me/Oxradikal" target="_blank" rel="noopener">@Oxradikal</a></li>
+              <li><span>گیت‌هاب:</span> <a href="https://github.com/0xradikal" target="_blank" rel="noopener">0xradikal</a></li>
+              <li><span>لینکدین:</span> <a href="https://www.linkedin.com/in/0xradikal" target="_blank" rel="noopener">linkedin.com/in/0xradikal</a></li>
+              <li><span>تلفن:</span> +98 912 000 1234</li>
+            </ul>
+          </div>
+          <div class="contact-card">
+            <h3>فرم تماس</h3>
+            <form class="card-form" aria-label="فرم تماس">
+              <label>نام
+                <input name="name" required minlength="2" value="مخاطب نمونه" />
+              </label>
+              <label>ایمیل
+                <input name="email" type="email" required value="sample@example.com" />
+              </label>
+              <label>پیام
+                <textarea name="msg" rows="3" required minlength="10">سلام! برای همکاری روی مانیتورینگ نود تماس می‌گیرم.</textarea>
+              </label>
+              <button class="btn btn--primary" type="submit">ارسال</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================
+           Interactive Shell (v8.1.0)
+      ========================== -->
+      <section class="shell stage" aria-label="Interactive shell">
+        <div class="shell__header">
+          <span class="led led--ok" aria-hidden="true"></span>
+          <span class="led led--net" aria-hidden="true"></span>
+          <span class="led led--sec" aria-hidden="true"></span>
+          <span class="shell__title mono">Radikal CLI v8.1.0</span>
+          <div class="shell__actions">
+            <button class="shell__btn mono" type="button" id="muteBtn" aria-label="Toggle sound" aria-pressed="false" title="Mute/Unmute">mute: off</button>
+            <button class="shell__btn mono" type="button" id="helpBtn" aria-label="Show help">help</button>
+            <button class="shell__btn mono" type="button" id="clearBtn" aria-label="Clear log">clear</button>
+          </div>
+        </div>
+
+        <div class="shell__output mono" id="output" tabindex="0" role="status" aria-live="polite" aria-atomic="false"></div>
+
+        <div class="shell__input input-line">
+          <label for="input" class="prompt mono" aria-hidden="true">radikal.eth$</label>
+          <input id="input" class="mono" type="text" aria-label="Command input" autocomplete="off" />
+        </div>
+
+        <div class="suggestions" id="suggestions" aria-live="polite"></div>
+      </section>
+
+      <footer class="links stage" aria-label="Links">
+        <a class="link" href="https://0xradikal.github.io" target="_blank" rel="noopener noreferrer">Portfolio</a>
+        <a class="link" href="/profile-card/contact.html" target="_blank" rel="noopener noreferrer">Contact</a>
+      </footer>
+
+      <div class="sparks" aria-hidden="true">
+        <span class="spark s1"></span><span class="spark s2"></span>
+        <span class="spark s3"></span><span class="spark s4"></span>
+      </div>
+    </article>
+  </main>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script type="module" src="/profile-card/index.js"></script>
+
+</body>
+</html>
